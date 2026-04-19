@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
-import { helpLinks, navLinks } from "@/components/site-data";
+import { helpLinks, primaryNavLinks, serviceMenuLinks } from "@/components/site-data";
 
 export default function SiteFooter() {
   const [newsletterStatus, setNewsletterStatus] = useState("");
@@ -66,7 +66,12 @@ export default function SiteFooter() {
 
           <section className="footer-col">
             <h3>Quick Links</h3>
-            {navLinks.map((item) => (
+            {primaryNavLinks.map((item) => (
+              <Link key={item.href} href={item.href}>
+                {item.label}
+              </Link>
+            ))}
+            {serviceMenuLinks.map((item) => (
               <Link key={item.href} href={item.href}>
                 {item.label}
               </Link>

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { navLinks } from "@/components/site-data";
+import { primaryNavLinks, serviceMenuLinks } from "@/components/site-data";
 
 function isActivePath(pathname: string, href: string) {
   if (href === "/") {
@@ -17,7 +17,10 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const orderedLinks = useMemo(() => navLinks, []);
+  const orderedLinks = useMemo(() => primaryNavLinks, []);
+  const serviceLinks = useMemo(() => serviceMenuLinks, []);
+  const serviceActive =
+    pathname.startsWith("/services") || pathname.startsWith("/dedicated-remote-ops");
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", isMenuOpen);
@@ -46,6 +49,24 @@ export default function SiteHeader() {
                 {item.label}
               </Link>
             ))}
+
+            <div className={`nav-dropdown ${serviceActive ? "is-active" : ""}`}>
+              <Link href="/services" className="nav-dropdown-trigger">
+                Services
+              </Link>
+              <div className="nav-dropdown-menu" role="menu" aria-label="Services menu">
+                {serviceLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="nav-dropdown-item"
+                    role="menuitem"
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </nav>
 
           <Link href="/services#contact" className="btn btn-primary desktop-cta">
@@ -94,6 +115,18 @@ export default function SiteHeader() {
           <nav className="mobile-nav" aria-label="Mobile menu">
             {orderedLinks.map((item) => (
               <Link key={item.href} href={item.href} onClick={() => setIsMenuOpen(false)}>
+                {item.label}
+              </Link>
+            ))}
+
+            <p className="mobile-nav-group-title">Services</p>
+            {serviceLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="mobile-sub-link"
+                onClick={() => setIsMenuOpen(false)}
+              >
                 {item.label}
               </Link>
             ))}

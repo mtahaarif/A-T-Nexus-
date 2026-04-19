@@ -4,7 +4,6 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import {
   AboutSection,
-  AffiliationsSection,
   LeadershipSection,
   MissionSection,
   ValuesSection,
@@ -24,7 +23,6 @@ export default function AboutPage() {
         <WhySection />
         <ValuesSection />
         <LeadershipSection />
-        <AffiliationsSection />
       </main>
       <SiteFooter />
     </>

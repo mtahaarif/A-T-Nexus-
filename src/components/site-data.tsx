@@ -12,10 +12,13 @@ export type ServiceItem = {
   icon: "digital" | "growth" | "technology" | "web";
 };
 
-export const navLinks = [
+export const primaryNavLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/services", label: "Services" },
+] as const;
+
+export const serviceMenuLinks = [
+  { href: "/services", label: "IT Services" },
   { href: "/dedicated-remote-ops", label: "Dedicated Ops" },
 ] as const;
 

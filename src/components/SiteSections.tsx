@@ -13,10 +13,8 @@ export function HeroSection() {
     <section id="home" className="hero section-pad">
       <div className="container hero-content reveal reveal-up">
         <div className="hero-copy">
-          <h3>SMARTER BUSINESS AHEAD</h3>
           <h1>
-            Empowering SMEs With <br />
-            Future-Ready <span>Technology</span>
+            Empowering SMEs With Future-Ready <span>Technology</span>
           </h1>
           <p>
             We simplify digital adoption with smart, scalable solutions that
@@ -38,25 +36,31 @@ export function HomeSplitSection() {
       <div className="container home-split-grid reveal reveal-up">
         <article className="home-split-card">
           <h2>Who We Are</h2>
-          <p>
-            A&T Nexus helps SMEs modernize operations with practical digital
-            systems, faster execution, and measurable outcomes.
-          </p>
-          <Link href="/about" className="btn btn-primary">
-            Learn About Us
-          </Link>
+          <ul>
+            <li>A&T Nexus is a digital transformation partner for small and medium-sized businesses.</li>
+            <li>We specialize in streamlining operations, automating workflows, and building scalable systems.</li>
+            <li>Our expertise covers backend operations, hiring, billing, care coordination, and process optimization.</li>
+            <li>We bring hands-on experience in healthcare, home care, and service-based industries.</li>
+            <li>We don&apos;t just consult, we implement, manage, and continuously optimize.</li>
+            <li>Our approach is practical, data-driven, and built for real-world execution.</li>
+            <li>We help businesses reduce operational burden, cut costs, and scale efficiently.</li>
+            <li>Focused on one goal: turning complex operations into simple, scalable systems.</li>
+          </ul>
         </article>
 
         <article className="home-split-card">
           <h2>What We Deliver</h2>
           <ul>
-            {services.map((service) => (
-              <li key={service.title}>{service.title}</li>
-            ))}
+            <li>Streamlined Operations: simplified workflows that eliminate inefficiencies and save time.</li>
+            <li>End-to-End Process Management: from hiring and onboarding to billing and daily operations.</li>
+            <li>Automated Systems: reduced manual work through smart tools and digital workflows.</li>
+            <li>Scalable Infrastructure: systems designed to grow with your business.</li>
+            <li>Cost Optimization: lower operational expenses without compromising quality.</li>
+            <li>Faster Turnaround Times: improved speed across scheduling, coordination, and execution.</li>
+            <li>Compliance-Ready Processes: structured systems aligned with industry standards, especially healthcare and home care.</li>
+            <li>Actionable Insights: data-driven reporting to support better decision-making.</li>
+            <li>Reliable Remote Support: consistent backend operations handled by experienced professionals.</li>
           </ul>
-          <Link href="/services" className="btn btn-primary">
-            View Services
-          </Link>
         </article>
       </div>
     </section>
@@ -66,16 +70,8 @@ export function HomeSplitSection() {
 export function AboutSection() {
   return (
     <section id="About_Sec" className="section-pad about">
-      <div className="container about-grid">
-        <div className="about-media reveal reveal-left">
-          <img
-            src="https://atnexus.io/wp-content/uploads/2025/10/Group-1618873603.png"
-            alt="Shaping the future for SMEs"
-          />
-        </div>
-
-        <div className="about-copy reveal reveal-right">
-          <img className="mini-mark" src="/theme/logo-no-text.png" alt="A&T mark" />
+      <div className="container about-single reveal reveal-up">
+        <div className="about-copy about-copy-justified">
           <h2>Shaping The Future For SMEs</h2>
           <p>
             <strong>A&T Nexus</strong> is a digital transformation company

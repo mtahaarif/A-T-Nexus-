@@ -5,57 +5,129 @@ import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { useRevealOnScroll } from "@/components/useRevealOnScroll";
 
+const operationsBlocks = [
+  {
+    title: "1) Caregiver Recruitment & Applicant Management",
+    points: [
+      "Sourcing and screening caregiver candidates.",
+      "Interview coordination and pipeline follow-up.",
+      "Applicant tracking updates and handoff management.",
+    ],
+    tools: "Tools: Apploi, hiring trackers, communication workflows",
+  },
+  {
+    title: "2) Credentialing & Compliance File Management",
+    points: [
+      "Organize caregiver credentials, licenses, and certifications.",
+      "Track expirations and compliance deadlines.",
+      "Maintain audit-ready records for agency oversight.",
+    ],
+    tools: "Tools: WellSky, credential trackers, compliance logs",
+  },
+  {
+    title: "3) Scheduling & Shift Coordination",
+    points: [
+      "Support weekly and daily caregiver scheduling.",
+      "Handle schedule changes, call-outs, and coverage requests.",
+      "Coordinate with field teams for continuity of care.",
+    ],
+    tools: "Tools: WellSky, scheduling systems, shift coordination boards",
+  },
+  {
+    title: "4) Patient Intake, Authorizations & Service Start Support",
+    points: [
+      "Assist intake teams with case setup and documentation checks.",
+      "Track authorization status and ensure timely follow-ups.",
+      "Coordinate service start prerequisites across stakeholders.",
+    ],
+    tools: "Tools: Intake workflows, authorization trackers, case logs",
+  },
+  {
+    title: "5) EVV, Visit Validation & Documentation QA",
+    points: [
+      "Review EVV records and visit exceptions.",
+      "Flag missing documentation and coordinate corrections.",
+      "Maintain quality checks to reduce billing delays.",
+    ],
+    tools: "Tools: EVV systems, QA checklists, exception tracking",
+  },
+  {
+    title: "6) Billing Operations, Claims Follow-Up & Collections Support",
+    points: [
+      "Prepare billing inputs and validate claim readiness.",
+      "Track denials, resubmissions, and follow-up activities.",
+      "Support payment posting and collections coordination.",
+    ],
+    tools: "Tools: Billing platforms, payer trackers, revenue workflows",
+  },
+  {
+    title: "7) Payroll Preparation & Viventium Support",
+    points: [
+      "Process timesheet validation and payroll input readiness.",
+      "Support payroll cycles and issue escalation.",
+      "Coordinate reconciliations between operations and payroll teams.",
+    ],
+    tools: "Tools: Viventium, payroll reports, reconciliation sheets",
+  },
+  {
+    title: "8) Care Coordination & Patient/Family Communication Support",
+    points: [
+      "Manage follow-ups for caregiver-client continuity.",
+      "Coordinate non-clinical communication touchpoints.",
+      "Maintain timely updates across operations channels.",
+    ],
+    tools: "Tools: CRM, call logs, communication trackers",
+  },
+  {
+    title: "9) Process Documentation, SOP Management & QA",
+    points: [
+      "Create and maintain SOPs for recurring operations.",
+      "Standardize handoffs and reduce process variability.",
+      "Run quality audits and correction loops across teams.",
+    ],
+    tools: "Tools: SOP repositories, QA templates, process scorecards",
+  },
+  {
+    title: "10) KPI Reporting & Continuous Operations Improvement",
+    points: [
+      "Track operational KPIs for staffing, compliance, and billing.",
+      "Deliver structured reports with actionable recommendations.",
+      "Identify trends and optimize workflows month over month.",
+    ],
+    tools: "Tools: Dashboards, weekly review decks, performance analytics",
+  },
+];
+
 const comparisonRows = [
   {
-    metric: "Hourly Loaded Cost",
-    inHouse: "$28 - $35",
-    dedicated: "Starts at $17",
+    category: "Cost Structure",
+    fullTime: "High fixed costs with benefits, taxes, and overhead.",
+    dedicated: "Lean and scalable pricing model with clear monthly control.",
   },
   {
-    metric: "Health/Benefit Burden",
-    inHouse: "$5,000+ /yr",
-    dedicated: "$0 (Included)",
+    category: "Ramp-Up Time",
+    fullTime: "Long hiring and onboarding cycles before productivity.",
+    dedicated: "Fast deployment with operations-ready professionals.",
   },
   {
-    metric: "Office/Tech Overhead",
-    inHouse: "$3,000+ /yr",
-    dedicated: "$0 (Included)",
+    category: "Coverage Reliability",
+    fullTime: "Single-resource gaps can create delays and disruptions.",
+    dedicated: "Managed continuity with structured backup support.",
   },
   {
-    metric: "Onboarding Time",
-    inHouse: "4-6 Weeks",
-    dedicated: "Instant Execution",
+    category: "Process Ownership",
+    fullTime: "Often dependent on individual habits and tribal knowledge.",
+    dedicated: "SOP-driven execution with documented workflows.",
   },
   {
-    metric: "Annual Impact",
-    inHouse: "$65k - $75k",
-    dedicated: "Over 50% Savings",
-  },
-];
-
-const handledTasks = [
-  "Lead Gen & Qualification (Patient Pipeline)",
-  "HR & Caregiver Onboarding Support",
-  "Billing & Payroll Management (Viventium)",
-  "CRM Management & Data Reporting",
-  "Paperless Database Management",
-  "Care Coordination & Follow-ups",
-  "Workflow Optimization (JotForms/Ops)",
-  "24/7 Issue Resolution & Support",
-];
-
-const performancePillars = [
-  {
-    title: "40-Hour Commitment",
-    text: "One dedicated staff member works 40 hours weekly exclusively for your agency and operates as an extension of your team.",
+    category: "Performance Visibility",
+    fullTime: "Limited reporting and inconsistent KPI tracking.",
+    dedicated: "Regular KPI-based reporting and optimization reviews.",
   },
   {
-    title: "KPI-Driven Reporting",
-    text: "Weekly reporting on recruitment volume, lead conversion, and compliance accuracy with transparent performance tracking.",
-  },
-  {
-    title: "Software Expertise",
-    text: "Pre-certified in Wellsky, Apploi, Verveware, and Viventium from day one so there is no training curve.",
+    category: "Scalability",
+    fullTime: "Scaling requires repeated hiring cycles.",
+    dedicated: "Flexible scale-up with evolving operational needs.",
   },
 ];
 
@@ -66,41 +138,68 @@ export default function DedicatedRemoteOpsPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="section-pad dedicated-hero">
+        <section className="section-pad ops-hero">
           <div className="container reveal reveal-up">
-            <p className="dedicated-tag">Starting from $17/Hour</p>
-            <h1>Your Dedicated Remote Operations Powerhouse</h1>
+            <p className="ops-tag">Dedicated Home Care &amp; Home Health Operations</p>
+            <h1>Built For Agencies That Need Precision, Speed, And Scale</h1>
             <p>
-              Replace $60k/year in-house desk roles with a dedicated,
-              pre-trained remote staff focused exclusively on your agency&apos;s
-              backend growth.
+              We support your agency&apos;s critical backend functions with
+              dedicated operations professionals who understand home care and
+              home health workflows end-to-end.
             </p>
             <Link href="/services#contact" className="btn btn-primary">
-              Book Your Free Strategy Audit
+              Book A Strategy Session
             </Link>
           </div>
         </section>
 
-        <section className="section-pad-sm dedicated-math">
+        <section className="section-pad-sm ops-shell">
           <div className="container reveal reveal-up">
             <div className="section-head">
-              <h2>The Smart Agency Math</h2>
+              <h2>Operational Coverage We Deliver</h2>
               <p>
-                Free your office staff for the field while A&T Nexus handles
-                your critical screen work.
+                Dedicated support across recruitment, compliance, scheduling,
+                billing, payroll, coordination, and performance reporting.
               </p>
             </div>
 
-            <div className="math-table" role="table" aria-label="Agency staffing comparison">
-              <div className="math-header" role="row">
-                <p role="columnheader">Metric</p>
-                <p role="columnheader">In-House Office Admin</p>
-                <p role="columnheader">A&T Dedicated Staff</p>
+            <div className="ops-grid">
+              {operationsBlocks.map((block) => (
+                <article className="ops-card" key={block.title}>
+                  <h3>{block.title}</h3>
+                  <ul>
+                    {block.points.map((point) => (
+                      <li key={point}>{point}</li>
+                    ))}
+                  </ul>
+                  <p className="ops-tools">{block.tools}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="section-pad-sm ops-compare">
+          <div className="container reveal reveal-up">
+            <div className="section-head">
+              <h2>Why Choose Us Over Full-Time Employees</h2>
+              <p>
+                We provide operational consistency with stronger process control,
+                better visibility, and significantly lower administrative burden.
+              </p>
+            </div>
+
+            <div className="ops-table" role="table" aria-label="Dedicated ops comparison">
+              <div className="ops-table-head" role="row">
+                <p role="columnheader">Category</p>
+                <p role="columnheader">Traditional Full-Time Employee</p>
+                <p role="columnheader">A&amp;T Nexus Dedicated Ops</p>
               </div>
+
               {comparisonRows.map((row) => (
-                <div className="math-row" role="row" key={row.metric}>
-                  <p>{row.metric}</p>
-                  <p>{row.inHouse}</p>
+                <div className="ops-table-row" role="row" key={row.category}>
+                  <p>{row.category}</p>
+                  <p>{row.fullTime}</p>
                   <p>{row.dedicated}</p>
                 </div>
               ))}
@@ -108,52 +207,16 @@ export default function DedicatedRemoteOpsPage() {
           </div>
         </section>
 
-        <section className="section-pad dedicated-handled">
+        <section className="section-pad ops-close">
           <div className="container reveal reveal-up">
-            <div className="section-head">
-              <h2>What We Handle While You&apos;re In The Field</h2>
-            </div>
-
-            <div className="handled-grid">
-              {handledTasks.map((task) => (
-                <article key={task} className="handled-item">
-                  <span aria-hidden="true">✓</span>
-                  <p>{task}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section-pad-sm dedicated-pillars">
-          <div className="container reveal reveal-up">
-            <div className="section-head">
-              <h2>One Dedicated Professional. 100% Focused On You.</h2>
-            </div>
-
-            <div className="pillar-grid">
-              {performancePillars.map((pillar) => (
-                <article key={pillar.title} className="pillar-card">
-                  <h3>{pillar.title}</h3>
-                  <p>{pillar.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section-pad dedicated-cta">
-          <div className="container reveal reveal-up">
-            <h2>Stop Paying For Overhead. Start Paying For Performance.</h2>
+            <h2>Operational Excellence Without Internal Overhead</h2>
             <p>
-              Shift your backend workload to A&T Nexus and let your field staff
-              focus on patient care.
-            </p>
-            <p className="dedicated-note">
-              Flexible Part-Time &amp; Full-Time Options Available
+              A&amp;T Nexus helps home care and home health agencies run lean,
+              compliant, and scalable operations while your internal teams focus
+              on patient outcomes and growth.
             </p>
             <Link href="/services#contact" className="btn btn-primary">
-              Scale Your Agency Today
+              Start With Dedicated Ops
             </Link>
           </div>
         </section>
