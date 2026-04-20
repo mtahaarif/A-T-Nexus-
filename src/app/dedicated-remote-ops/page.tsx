@@ -1,6 +1,10 @@
 "use client";
 
+import { Check, X } from "lucide-react";
 import Link from "next/link";
+import BackendCoverageCards, { type BackendCoverageItem } from "@/components/BackendCoverageCards";
+import CallToAction from "@/components/CallToAction";
+import ComparisonGrid from "@/components/ComparisonGrid";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { useRevealOnScroll } from "@/components/useRevealOnScroll";
@@ -148,6 +152,15 @@ const operationsBlocks = [
   },
 ];
 
+const backendCoverageItems: BackendCoverageItem[] = operationsBlocks.map((block) => ({
+  id: block.id,
+  title: block.title,
+  subtitle: block.seoHeading,
+  desc: block.description,
+  bullets: block.points,
+  software: block.software.replace(/^Software:\s*/i, "").replace(/^Tools:\s*/i, ""),
+}));
+
 const fullTimeStaffChallenges = [
   "High salary costs (salary + benefits + taxes)",
   "Time-consuming hiring & training",
@@ -167,39 +180,6 @@ const atNexusAdvantages = [
   "Familiar with industry tools (WellSky, Apploi, AxisCare, etc.)",
 ];
 
-const comparisonRows = [
-  {
-    category: "Cost",
-    fullTime: "High fixed cost",
-    dedicated: "Flexible & scalable",
-  },
-  {
-    category: "Hiring time",
-    fullTime: "Weeks/months",
-    dedicated: "Immediate start",
-  },
-  {
-    category: "Skill coverage",
-    fullTime: "Limited",
-    dedicated: "Multi-skill team",
-  },
-  {
-    category: "Training burden",
-    fullTime: "On you",
-    dedicated: "Already trained",
-  },
-  {
-    category: "Scalability",
-    fullTime: "Slow",
-    dedicated: "Instant",
-  },
-  {
-    category: "Risk",
-    fullTime: "High turnover",
-    dedicated: "Stable operations",
-  },
-];
-
 export default function DedicatedRemoteOpsPage() {
   useRevealOnScroll();
 
@@ -209,7 +189,6 @@ export default function DedicatedRemoteOpsPage() {
       <main>
         <section className="section-pad ops-redesign-hero">
           <div className="container reveal reveal-up">
-            <p className="ops-redesign-kicker">Dedicated Home Care &amp; Home Health Operations</p>
             <h1>Dedicated Home Care &amp; Home Health Operations</h1>
             <p className="ops-redesign-subtitle">
               &quot;From billing and staffing to lead generation and client
@@ -221,56 +200,40 @@ export default function DedicatedRemoteOpsPage() {
           </div>
         </section>
 
-        <section className="section-pad-sm ops-redesign-services">
-          <div className="container reveal reveal-up">
-            <div className="section-head">
-              <h2>Backend Operations Coverage</h2>
-              <p>
-                Specialized operational support for home care and home health
-                agencies across billing, staffing, compliance, and growth.
-              </p>
-            </div>
-
-            <div className="ops-redesign-grid">
-              {operationsBlocks.map((block) => (
-                <article className="ops-redesign-card" key={block.id}>
-                  <p className="ops-redesign-index">{block.id}</p>
-                  <h3>{block.title}</h3>
-                  <h4>{block.seoHeading}</h4>
-                  <p className="ops-redesign-description">{block.description}</p>
-                  <ul>
-                    {block.points.map((point) => (
-                      <li key={point}>{point}</li>
-                    ))}
-                  </ul>
-                  <p className="ops-redesign-software">{block.software}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <BackendCoverageCards
+          className="ops-redesign-services"
+          items={backendCoverageItems}
+          title="Backend Operations Coverage"
+          description="Specialized operational support for home care and home health agencies across billing, staffing, compliance, and growth."
+        />
 
         <section className="section-pad-sm ops-redesign-why">
           <div className="container reveal reveal-up">
             <div className="section-head">
-              <h2>Why Choose Us Over Full-Time Employees</h2>
+              <h2 className="font-outfit">Why Choose Us Over Full-Time Employees</h2>
             </div>
 
-            <div className="ops-redesign-why-grid">
-              <article className="ops-why-card ops-why-card-muted">
-                <h3>Hiring Full-Time Staff</h3>
+            <div className="ops-why-depth-grid">
+              <article className="ops-why-depth-card ops-why-depth-card-fulltime">
+                <h3 className="font-outfit">Hiring Full-Time Staff</h3>
                 <ul>
                   {fullTimeStaffChallenges.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item}>
+                      <X size={16} strokeWidth={2.2} aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
                   ))}
                 </ul>
               </article>
 
-              <article className="ops-why-card ops-why-card-accent">
-                <h3>Hiring A&amp;T Nexus (Us)</h3>
+              <article className="ops-why-depth-card ops-why-depth-card-nexus">
+                <h3 className="font-outfit">Hiring A&amp;T Nexus (Us)</h3>
                 <ul>
                   {atNexusAdvantages.map((item) => (
-                    <li key={item}>{item}</li>
+                    <li key={item}>
+                      <Check size={16} strokeWidth={2.4} aria-hidden="true" />
+                      <span>{item}</span>
+                    </li>
                   ))}
                 </ul>
               </article>
@@ -278,46 +241,9 @@ export default function DedicatedRemoteOpsPage() {
           </div>
         </section>
 
-        <section className="section-pad-sm ops-redesign-table-shell">
-          <div className="container reveal reveal-up">
-            <div className="section-head">
-              <h2>Simple Comparison</h2>
-            </div>
+        <ComparisonGrid className="reveal reveal-up" />
 
-            <div className="ops-redesign-table" role="table" aria-label="Simple dedicated ops comparison">
-              <div className="ops-redesign-table-head" role="row">
-                <p role="columnheader">Aspect</p>
-                <p role="columnheader">Full-Time Staff</p>
-                <p role="columnheader">A&amp;T Nexus</p>
-              </div>
-
-              {comparisonRows.map((row) => (
-                <div className="ops-redesign-table-row" role="row" key={row.category}>
-                  <p>{row.category}</p>
-                  <p>{row.fullTime}</p>
-                  <p>{row.dedicated}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section-pad ops-redesign-close">
-          <div className="container reveal reveal-up">
-            <h2>Closing Statement</h2>
-            <blockquote className="ops-fancy-quote">
-              <span>
-                Instead of hiring multiple full-time employees, you get an
-                entire operations team that already understands home care
-                systems, billing workflows, recruitment, and client acquisition
-                - all under one roof.
-              </span>
-            </blockquote>
-            <Link href="/services#contact" className="btn btn-primary">
-              Start With Dedicated Ops
-            </Link>
-          </div>
-        </section>
+        <CallToAction className="reveal reveal-up" />
       </main>
       <SiteFooter />
     </>

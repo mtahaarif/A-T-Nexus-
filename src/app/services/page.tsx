@@ -20,12 +20,7 @@ function ServiceCategoryIcon({ type }: { type: ServiceIconType }) {
     case "ai":
       return (
         <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
-          <path d="M18 30a14 14 0 1 1 28 0v2a6 6 0 0 0 2 4l2 2v4H14v-4l2-2a6 6 0 0 0 2-4v-2Z" />
-          <path d="M24 49h16" />
-          <path d="M27 55h10" />
-          <circle cx="27" cy="30" r="2" />
-          <circle cx="37" cy="30" r="2" />
-          <path d="M29 36c1.2 1.5 4.8 1.5 6 0" />
+          <text x="32" y="40" textAnchor="middle" fontFamily="Gilroy, var(--font-body), sans-serif" fontWeight="700" fontSize="24" fill="#9bfff3">AI</text>
         </svg>
       );
     case "web":
@@ -221,7 +216,7 @@ export default function ServicesPage() {
         <section className="section-pad services-catalog-shell">
           <div className="container services-catalog-head reveal reveal-up">
             <div className="services-catalog-copy">
-              <h1>IT Services - Digital &amp; Automation</h1>
+              <h1>IT Services</h1>
             </div>
             <p className="services-catalog-intro">
               Growth-focused IT services built for SMEs, healthcare businesses,
@@ -232,20 +227,25 @@ export default function ServicesPage() {
 
           <div className="container services-catalog-grid reveal reveal-up">
             {itServiceBlocks.map((block) => (
-              <article key={block.id} className="services-catalog-card">
-                <div className="services-card-top">
-                  <span className="services-card-icon" aria-hidden="true">
-                    <ServiceCategoryIcon type={block.icon} />
-                  </span>
-                </div>
+              <article key={block.id} className="services-catalog-card services-hover-card" tabIndex={0}>
+                <div className="services-hover-inner">
+                  <div className="services-card-top services-hover-front">
+                    <span className="services-card-icon" aria-hidden="true">
+                      <ServiceCategoryIcon type={block.icon} />
+                    </span>
 
-                <h2>{block.title}</h2>
-                <ul>
-                  {block.points.map((point) => (
-                    <li key={point}>{point}</li>
-                  ))}
-                </ul>
-                <p className="services-card-stack">{block.stack}</p>
+                    <h2>{block.title}</h2>
+                  </div>
+
+                  <div className="services-hover-back">
+                    <ul>
+                      {block.points.map((point) => (
+                        <li key={point}>{point}</li>
+                      ))}
+                    </ul>
+                    <p className="services-card-stack">{block.stack}</p>
+                  </div>
+                </div>
               </article>
             ))}
           </div>

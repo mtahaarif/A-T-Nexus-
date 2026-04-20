@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
-import { helpLinks, primaryNavLinks, serviceMenuLinks } from "@/components/site-data";
+import { helpLinks } from "@/components/site-data";
+
+const quickLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/services", label: "Services" },
+  { href: "/services#contact", label: "Contact Us" },
+];
 
 export default function SiteFooter() {
   const [newsletterStatus, setNewsletterStatus] = useState("");
@@ -16,14 +23,14 @@ export default function SiteFooter() {
 
   return (
     <footer className="site-footer">
-      <div className="container footer-frame reveal reveal-up">
+      <div className="container reveal reveal-up">
         <div className="cta-strip">
           <h2>Let&apos;s Build Your Digital Future</h2>
           <div className="cta-side">
             <p>
               We create smart, scalable solutions that help your business grow.
             </p>
-            <Link href="/services#contact" className="btn btn-primary">
+            <Link href="/services#contact" className="footer-cta-btn">
               Get Started Today
             </Link>
           </div>
@@ -66,17 +73,11 @@ export default function SiteFooter() {
 
           <section className="footer-col">
             <h3>Quick Links</h3>
-            {primaryNavLinks.map((item) => (
+            {quickLinks.map((item) => (
               <Link key={item.href} href={item.href}>
                 {item.label}
               </Link>
             ))}
-            {serviceMenuLinks.map((item) => (
-              <Link key={item.href} href={item.href}>
-                {item.label}
-              </Link>
-            ))}
-            <Link href="/services#contact">Contact Us</Link>
           </section>
 
           <section className="footer-col">

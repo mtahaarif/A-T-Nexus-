@@ -1,0 +1,239 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { Plus_Jakarta_Sans } from "next/font/google";
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-jakarta",
+});
+
+export default function CinematicWhoWeAre() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start center", "end center"],
+  });
+
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 220,
+    damping: 34,
+    mass: 0.24,
+  });
+
+  const block1Opacity = useTransform(
+    progress,
+    [0, 0.22, 0.34],
+    [1, 1, 0]
+  );
+  const block1Y = useTransform(progress, [0, 0.22, 0.34], [0, 0, -26]);
+  const block1Scale = useTransform(progress, [0, 0.22, 0.34], [1, 1, 0.985]);
+  const block1Filter = useTransform(
+    progress,
+    [0, 0.24, 0.34],
+    ["blur(0px)", "blur(0px)", "blur(6px)"]
+  );
+
+  const block2Opacity = useTransform(
+    progress,
+    [0.29, 0.38, 0.58, 0.68],
+    [0, 1, 1, 0]
+  );
+  const block2Y = useTransform(progress, [0.29, 0.5, 0.68], [24, 0, -24]);
+  const block2Scale = useTransform(progress, [0.29, 0.5, 0.68], [0.985, 1, 0.985]);
+  const block2Filter = useTransform(
+    progress,
+    [0.29, 0.38, 0.58, 0.68],
+    ["blur(7px)", "blur(0px)", "blur(0px)", "blur(7px)"]
+  );
+
+  const block3Opacity = useTransform(progress, [0.63, 0.72, 1], [0, 1, 1]);
+  const block3Y = useTransform(progress, [0.63, 0.8, 1], [22, 0, 0]);
+  const block3Scale = useTransform(progress, [0.63, 0.8, 1], [0.985, 1, 1]);
+  const block3Filter = useTransform(
+    progress,
+    [0.63, 0.72, 1],
+    ["blur(7px)", "blur(0px)", "blur(0px)"]
+  );
+
+  return (
+    <section
+      id="who-we-are"
+      ref={sectionRef}
+      role="region"
+      aria-label="Who We Are cinematic"
+      className={`${jakarta.variable} cinematic-who-shell`}
+    >
+      <div className="cinematic-who-sticky">
+        <div
+          aria-hidden="true"
+          className="cinematic-who-glow"
+        />
+
+        <div className="cinematic-who-stage" aria-live="polite">
+          <motion.article
+            style={{ opacity: block1Opacity, y: block1Y, scale: block1Scale, filter: block1Filter }}
+            className="cinematic-who-scene"
+          >
+            <div className="cinematic-who-content">
+              <p className="cinematic-who-kicker font-jakarta">Who We Are</p>
+              <h2 className="cinematic-who-title font-outfit">
+                A&amp;T Nexus is a <span className="cinematic-who-highlight">digital transformation partner</span> for small and medium-sized businesses.
+              </h2>
+              <p className="cinematic-who-subtext font-jakarta">
+                We streamline operations, automate workflows, and build <span className="cinematic-who-highlight">scalable systems</span> that keep teams focused on growth.
+              </p>
+            </div>
+          </motion.article>
+
+          <motion.article
+            style={{ opacity: block2Opacity, y: block2Y, scale: block2Scale, filter: block2Filter }}
+            className="cinematic-who-scene"
+          >
+            <div className="cinematic-who-content">
+              <p className="cinematic-who-kicker font-jakarta">Who We Are</p>
+              <h2 className="cinematic-who-title font-outfit">
+                Our expertise spans <span className="cinematic-who-highlight">backend operations, hiring, billing, care coordination, and process optimization</span>.
+              </h2>
+              <p className="cinematic-who-subtext font-jakarta">
+                With hands-on experience in healthcare, home care, and service-based industries, we <span className="cinematic-who-highlight">implement, manage, and continuously optimize</span>.
+              </p>
+            </div>
+          </motion.article>
+
+          <motion.article
+            style={{ opacity: block3Opacity, y: block3Y, scale: block3Scale, filter: block3Filter }}
+            className="cinematic-who-scene"
+          >
+            <div className="cinematic-who-content">
+              <p className="cinematic-who-kicker font-jakarta">Who We Are</p>
+              <h2 className="cinematic-who-title font-outfit">
+                Practical. Data-driven. <span className="cinematic-who-highlight">Built for real-world execution.</span>
+              </h2>
+              <p className="cinematic-who-subtext font-jakarta">
+                We help businesses reduce operational burden, cut costs, and scale efficiently &mdash; focused on turning complex operations into <span className="cinematic-who-highlight">simple, scalable systems</span>.
+              </p>
+            </div>
+          </motion.article>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .cinematic-who-shell {
+          position: relative;
+          height: 300vh;
+          background: #000000;
+          isolation: isolate;
+        }
+
+        .cinematic-who-sticky {
+          position: sticky;
+          top: 0;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+          padding: 0 24px;
+        }
+
+        .cinematic-who-glow {
+          pointer-events: none;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: min(42rem, 80vw);
+          aspect-ratio: 1 / 1;
+          transform: translate(-50%, -50%);
+          border-radius: 999px;
+          background: rgba(20, 241, 217, 0.05);
+          filter: blur(120px);
+          z-index: 0;
+        }
+
+        .cinematic-who-stage {
+          position: relative;
+          z-index: 1;
+          width: 100%;
+          height: 100%;
+        }
+
+        .cinematic-who-scene {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          pointer-events: none;
+          will-change: opacity, transform;
+        }
+
+        .cinematic-who-content {
+          width: min(80vw, 1180px);
+          text-align: center;
+        }
+
+        .cinematic-who-kicker {
+          margin: 0 0 18px;
+          color: rgba(20, 241, 217, 0.92);
+          font-size: clamp(0.86rem, 0.78rem + 0.24vw, 1rem);
+          font-weight: 600;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+        }
+
+        .cinematic-who-title {
+          margin: 0;
+          text-wrap: balance;
+          color: #ffffff;
+          font-size: clamp(2.25rem, 1.45rem + 3.1vw, 5.25rem);
+          line-height: 1.06;
+          letter-spacing: -0.02em;
+          font-weight: 700;
+        }
+
+        .cinematic-who-subtext {
+          margin: 24px 0 0;
+          text-wrap: balance;
+          color: #9ca3af;
+          font-size: clamp(1.06rem, 0.98rem + 0.45vw, 1.34rem);
+          line-height: 1.55;
+        }
+
+        .cinematic-who-highlight {
+          color: #14f1d9;
+          text-shadow: 0 0 20px rgba(20, 241, 217, 0.42);
+        }
+
+        @media (max-width: 980px) {
+          .cinematic-who-sticky {
+            padding: 0 18px;
+          }
+
+          .cinematic-who-content {
+            width: min(88vw, 760px);
+          }
+        }
+
+        @media (max-width: 640px) {
+          .cinematic-who-sticky {
+            padding: 0 14px;
+          }
+
+          .cinematic-who-title {
+            line-height: 1.1;
+          }
+
+          .cinematic-who-subtext {
+            margin-top: 16px;
+            line-height: 1.5;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
