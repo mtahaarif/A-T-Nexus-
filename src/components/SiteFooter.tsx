@@ -13,12 +13,39 @@ const quickLinks = [
 
 export default function SiteFooter() {
   const [newsletterStatus, setNewsletterStatus] = useState("");
+  const [newsletterSending, setNewsletterSending] = useState(false);
   const currentYear = new Date().getFullYear();
 
-  const handleNewsletterSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleNewsletterSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setNewsletterStatus("You are subscribed. Watch your inbox for updates.");
-    event.currentTarget.reset();
+    const form = event.currentTarget;
+    const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement | null;
+    const email = emailInput?.value;
+    if (!email) return;
+
+    try {
+      setNewsletterSending(true);
+      setNewsletterStatus("Subscribing...");
+
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const json = await res.json();
+      if (res.ok) {
+        setNewsletterStatus(json.message || "Subscribed. Check your inbox.");
+        form.reset();
+      } else {
+        setNewsletterStatus(json.error || "Subscription failed.");
+      }
+    } catch (err) {
+      console.error("Newsletter subscribe error", err);
+      setNewsletterStatus("Error subscribing. Try again later.");
+    } finally {
+      setNewsletterSending(false);
+    }
   };
 
   return (
@@ -95,7 +122,7 @@ export default function SiteFooter() {
             <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
               <div className="newsletter-pill">
                 <input type="email" placeholder="Email Address..." required />
-                <button type="submit">Subscribe</button>
+                <button type="submit" disabled={newsletterSending}>{newsletterSending ? "Subscribing..." : "Subscribe"}</button>
               </div>
             </form>
             {newsletterStatus ? <p className="form-status">{newsletterStatus}</p> : null}

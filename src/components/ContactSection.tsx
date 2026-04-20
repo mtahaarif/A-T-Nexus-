@@ -4,11 +4,37 @@ import { FormEvent, useState } from "react";
 
 export default function ContactSection() {
   const [contactStatus, setContactStatus] = useState("");
+  const [sending, setSending] = useState(false);
 
-  const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleContactSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setContactStatus("Message received. Our team will get back to you shortly.");
-    event.currentTarget.reset();
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = Object.fromEntries(formData.entries());
+
+    try {
+      setSending(true);
+      setContactStatus("Sending message...");
+
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const json = await res.json();
+      if (res.ok) {
+        setContactStatus(json.message || "Message sent. We'll be in touch.");
+        form.reset();
+      } else {
+        setContactStatus(json.error || "Unable to send message.");
+      }
+    } catch (err) {
+      console.error("Contact submit error", err);
+      setContactStatus("Error sending message. Please try again later.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -83,8 +109,8 @@ export default function ContactSection() {
               <textarea name="message" rows={4} placeholder="Message" required />
             </label>
 
-            <button type="submit" className="btn btn-primary submit-btn">
-              Submit
+            <button type="submit" className="btn btn-primary submit-btn" disabled={sending}>
+              {sending ? "Sending..." : "Submit"}
             </button>
 
             {contactStatus ? <p className="form-status">{contactStatus}</p> : null}
