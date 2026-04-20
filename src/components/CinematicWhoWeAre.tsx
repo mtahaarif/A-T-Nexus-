@@ -129,8 +129,9 @@ export default function CinematicWhoWeAre() {
 
         .cinematic-who-sticky {
           position: sticky;
-          top: 0;
-          height: 100vh;
+          /* account for the site header so the sticky area centers in the visible viewport */
+          top: 92px;
+          height: calc(100vh - 92px);
           display: flex;
           align-items: center;
           justify-content: center;
