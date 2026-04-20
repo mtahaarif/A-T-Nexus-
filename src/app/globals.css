@@ -513,14 +513,25 @@ img {
 	gap: 14px;
 }
 
-.home-insight-panel-who .home-insight-grid {
-	display: contents;
-}
-
 .home-insight-panel-who .home-insight-head {
 	grid-column: 1 / 2;
 	grid-row: 1;
 	align-self: start;
+}
+
+.home-who-top-cards {
+	grid-column: 2 / 3;
+	grid-row: 1;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 14px;
+}
+
+.home-who-bottom-cards {
+	grid-column: 1 / -1;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 14px;
 }
 
 .home-insight-panel-deliver .home-insight-grid {
@@ -1962,6 +1973,12 @@ img {
 		gap: 16px;
 	}
 
+	.home-who-top-cards,
+	.home-who-bottom-cards {
+		grid-column: 1 / -1;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
 	.home-insight-head-deliver {
 		grid-template-columns: 1fr;
 		gap: 10px;
@@ -2039,6 +2056,11 @@ img {
 	}
 
 	.home-insight-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.home-who-top-cards,
+	.home-who-bottom-cards {
 		grid-template-columns: 1fr;
 	}
 

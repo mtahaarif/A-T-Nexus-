@@ -296,6 +296,9 @@ export function HeroSection() {
 }
 
 export function HomeSplitSection() {
+  const whoTopCards = whoWeAreHighlights.slice(0, 2);
+  const whoBottomCards = whoWeAreHighlights.slice(2);
+
   return (
     <section className="section-pad home-insight-shell">
       <div className="container home-insight-grid-wrap">
@@ -307,8 +310,23 @@ export function HomeSplitSection() {
               scalable, high-performance systems.
             </p>
           </div>
-          <div className="home-insight-grid">
-            {whoWeAreHighlights.map((item) => (
+
+          <div className="home-who-top-cards">
+            {whoTopCards.map((item) => (
+              <article key={item.title} className="home-insight-card home-insight-card-who">
+                <div className="home-insight-card-head">
+                  <span className="home-insight-icon" aria-hidden="true">
+                    <HomeInsightIcon type={item.icon} />
+                  </span>
+                  <h3>{item.title}</h3>
+                </div>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
+
+          <div className="home-who-bottom-cards">
+            {whoBottomCards.map((item) => (
               <article key={item.title} className="home-insight-card home-insight-card-who">
                 <div className="home-insight-card-head">
                   <span className="home-insight-icon" aria-hidden="true">
