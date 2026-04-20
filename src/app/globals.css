@@ -7,6 +7,34 @@
 		format("truetype");
 }
 
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+
+	.marquee-track {
+		animation: none !important;
+		transform: none !important;
+	}
+
+	.site-header,
+	.home-insight-card-glass,
+	.backend-coverage-card,
+	.comparison-grid-col-nexus {
+		backdrop-filter: none !important;
+		-webkit-backdrop-filter: none !important;
+	}
+}
+
 @font-face {
 	font-family: "Clash Display Variable";
 	font-style: normal;
@@ -682,6 +710,7 @@ img {
 .home-insight-head-who h2 {
 	font-size: clamp(2.3rem, 1.45rem + 2.4vw, 4.05rem);
 	line-height: 1.02;
+	text-align: center;
 }
 
 .home-insight-head p {
@@ -1369,6 +1398,10 @@ img {
 	gap: 14px;
 }
 
+.leadership-copy h2 {
+	text-align: center;
+}
+
 .affiliations-shell {
 	background: #ffffff;
 }
@@ -1715,19 +1748,19 @@ img {
 }
 
 .ops-redesign-main {
-	--ops-bg-light: #0b2828;
-	--ops-bg-light: color-mix(in srgb, var(--bg) 50%, #ffffff 50%);
+	--ops-bg-light: #082626;
+	--ops-bg-light: color-mix(in srgb, var(--bg) 70%, #ffffff 30%);
 	background:
 		linear-gradient(
 			180deg,
 			var(--bg) 0%,
-			rgba(6, 20, 20, 0.98) 24%,
-			rgba(8, 28, 28, 0.95) 56%,
+			rgba(6, 20, 20, 0.98) 32%,
+			rgba(8, 28, 28, 0.95) 64%,
 			var(--ops-bg-light) 100%
 		);
-	background-attachment: fixed;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
+	background-position: top center;
 	min-height: 100%;
 }
 
@@ -1777,6 +1810,7 @@ img {
 	align-items: center;
 	position: relative;
 	max-width: clamp(300px, 40vw, 560px);
+	--ops-hero-fade: color-mix(in srgb, var(--bg) 84%, #0b2e2d 16%);
 	isolation: isolate;
 	overflow: hidden;
 }
@@ -1789,10 +1823,10 @@ img {
 	pointer-events: none;
 	z-index: 2;
 	background:
-		linear-gradient(90deg, var(--bg) 0%, rgba(5, 16, 16, 0.85) 8%, rgba(5, 16, 16, 0) 30%),
-		linear-gradient(270deg, var(--bg) 0%, rgba(5, 16, 16, 0) 20%),
-		linear-gradient(180deg, var(--bg) 0%, rgba(5, 16, 16, 0) 24%),
-		linear-gradient(0deg, var(--bg) 0%, rgba(5, 16, 16, 0) 26%);
+		linear-gradient(90deg, var(--ops-hero-fade) 0%, rgba(8, 26, 26, 0.84) 12%, rgba(8, 26, 26, 0) 42%),
+		linear-gradient(270deg, var(--ops-hero-fade) 0%, rgba(8, 26, 26, 0) 30%),
+		linear-gradient(180deg, var(--ops-hero-fade) 0%, rgba(8, 26, 26, 0) 34%),
+		linear-gradient(0deg, var(--ops-hero-fade) 0%, rgba(8, 26, 26, 0) 36%);
 }
 
 .ops-hero-illustration::after {
@@ -1802,7 +1836,7 @@ img {
 	inset: 0;
 	pointer-events: none;
 	z-index: 3;
-	background: radial-gradient(120% 105% at 52% 48%, rgba(5, 16, 16, 0) 58%, rgba(5, 16, 16, 0.8) 100%);
+	background: radial-gradient(122% 108% at 52% 48%, rgba(8, 26, 26, 0) 56%, rgba(8, 26, 26, 0.9) 100%);
 }
 
 .ops-hero-illustration-img {
@@ -1811,8 +1845,8 @@ img {
 	display: block;
 	object-fit: contain;
 	/* light alpha falloff so the image naturally melts into the dark canvas */
-	-webkit-mask-image: radial-gradient(122% 104% at 50% 50%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
-	mask-image: radial-gradient(122% 104% at 50% 50%, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+	-webkit-mask-image: radial-gradient(126% 110% at 50% 50%, rgba(0, 0, 0, 1) 57%, rgba(0, 0, 0, 0) 100%);
+	mask-image: radial-gradient(126% 110% at 50% 50%, rgba(0, 0, 0, 1) 57%, rgba(0, 0, 0, 0) 100%);
 	-webkit-mask-repeat: no-repeat;
 	mask-repeat: no-repeat;
 	-webkit-mask-size: 100% 100%;
@@ -1837,10 +1871,10 @@ img {
 
 	.ops-hero-illustration::before {
 		background:
-			linear-gradient(90deg, var(--bg) 0%, rgba(5, 16, 16, 0) 18%),
-			linear-gradient(270deg, var(--bg) 0%, rgba(5, 16, 16, 0) 18%),
-			linear-gradient(180deg, var(--bg) 0%, rgba(5, 16, 16, 0) 20%),
-			linear-gradient(0deg, var(--bg) 0%, rgba(5, 16, 16, 0) 22%);
+			linear-gradient(90deg, var(--ops-hero-fade) 0%, rgba(8, 26, 26, 0) 22%),
+			linear-gradient(270deg, var(--ops-hero-fade) 0%, rgba(8, 26, 26, 0) 22%),
+			linear-gradient(180deg, var(--ops-hero-fade) 0%, rgba(8, 26, 26, 0) 24%),
+			linear-gradient(0deg, var(--ops-hero-fade) 0%, rgba(8, 26, 26, 0) 24%);
 	}
 }
 
@@ -2976,10 +3010,6 @@ img {
 
 	.hero-content {
 		min-height: inherit;
-	}
-
-	.ops-redesign-main {
-		background-attachment: scroll;
 	}
 
 	.about-grid,
