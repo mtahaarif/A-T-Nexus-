@@ -18,6 +18,7 @@ const jakarta = Plus_Jakarta_Sans({
 
 const comparisonRows: ComparisonRow[] = [
   { aspect: "Cost", fullTime: "High fixed cost", atNexus: "Flexible & scalable" },
+  { aspect: "Annual expenses", fullTime: "$60,000 - $65,000", atNexus: "50% less expenses" },
   { aspect: "Hiring time", fullTime: "Weeks/months", atNexus: "Immediate start" },
   { aspect: "Skill coverage", fullTime: "Limited", atNexus: "Multi-skill team" },
   { aspect: "Training burden", fullTime: "On you", atNexus: "Already trained" },
@@ -61,10 +62,10 @@ export default function ComparisonGrid({
               Aspect
             </p>
             <p className="comparison-grid-col comparison-grid-col-fulltime" role="columnheader">
-              Full-Time Staff
+              Full-Time Staff (onsite)
             </p>
             <p className="comparison-grid-col comparison-grid-col-nexus" role="columnheader">
-              A&amp;T Nexus
+              A&amp;T Nexus (remote)
             </p>
           </div>
 
@@ -74,12 +75,12 @@ export default function ComparisonGrid({
                 {row.aspect}
               </p>
 
-              <p className="comparison-grid-col comparison-grid-col-fulltime" data-label="Full-Time Staff">
+              <p className="comparison-grid-col comparison-grid-col-fulltime" data-label="Full-Time Staff (onsite)">
                 <X className="comparison-grid-icon comparison-grid-icon-x" size={15} strokeWidth={2.2} />
                 <span>{row.fullTime}</span>
               </p>
 
-              <p className="comparison-grid-col comparison-grid-col-nexus" data-label="A&amp;T Nexus">
+              <p className="comparison-grid-col comparison-grid-col-nexus" data-label="A&amp;T Nexus (remote)">
                 <Check
                   className="comparison-grid-icon comparison-grid-icon-check"
                   size={16}
