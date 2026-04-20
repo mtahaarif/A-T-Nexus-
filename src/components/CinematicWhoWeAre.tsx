@@ -59,6 +59,8 @@ export default function CinematicWhoWeAre() {
     [0.56, 0.66, 1],
     ["blur(6px)", "blur(0px)", "blur(0px)"]
   );
+  // offset third scene vertically by -200px (move up)
+  const block3YOffset = useTransform(block3Y, (v) => v - 200);
 
   return (
     <section
@@ -104,8 +106,8 @@ export default function CinematicWhoWeAre() {
           </motion.article>
 
           <motion.article
-            style={{ opacity: block3Opacity, y: block3Y, scale: block3Scale, filter: block3Filter }}
-            className="cinematic-who-scene"
+            style={{ opacity: block3Opacity, y: block3YOffset, scale: block3Scale, filter: block3Filter }}
+            className="cinematic-who-scene third-scene"
           >
             <div className="cinematic-who-content">
               <h2 className="cinematic-who-title font-outfit">
