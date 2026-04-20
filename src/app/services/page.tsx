@@ -114,124 +114,100 @@ function ServiceCategoryIcon({ type }: { type: ServiceIconType }) {
 
 const itServiceBlocks = [
   {
-    id: "AI",
+    id: "1",
     icon: "ai" as const,
-    title: "AI Automation & Intelligent Workflow Solutions",
-    seoHeading: "AI Automation Services for Operational Efficiency and Lead Conversion",
-    description:
-      "Transform repetitive business tasks into intelligent, always-on workflows that improve response time, data quality, and conversion outcomes.",
+    title: "AI Solutions & Automation",
     points: [
-      "AI chatbots and virtual assistants for support, intake, and lead response",
-      "No-code and custom workflow automation across operations and sales",
-      "Smart document processing with OCR-style data extraction and classification",
+      "AI Chatbots & Virtual Assistants",
+      "Workflow Automation (no-code & custom)",
+      "AI-Powered Lead Generation Systems",
+      "Document Processing & Smart Data Extraction",
     ],
-    stackLabel: "Platforms & Tools",
-    stack: "Python, OpenAI APIs, Zapier, Make (Integromat)",
+    stack: "Tools/Tech: Python, OpenAI APIs, Zapier, Make (Integromat)",
   },
   {
-    id: "WEB",
+    id: "2",
     icon: "web" as const,
-    title: "Custom Web & Mobile App Development",
-    seoHeading: "Web and Mobile App Development Services for Scalable Digital Products",
-    description:
-      "Design and build conversion-focused websites, landing pages, and applications that support user growth and long-term maintainability.",
+    title: "Web & App Development",
     points: [
-      "Custom websites and high-converting landing pages",
-      "SaaS web application development with secure user flows",
-      "Cross-platform mobile app development for iOS and Android",
+      "Custom Website Development",
+      "Landing Pages (High-Converting)",
+      "Web Applications (SaaS Platforms)",
+      "Mobile App Development (iOS & Android)",
     ],
-    stackLabel: "Tech Stack",
-    stack: "React, Next.js, Node.js, Firebase",
+    stack: "Tech Stack: React, Next.js, Node.js, Firebase",
   },
   {
-    id: "STACK",
+    id: "3",
     icon: "fullstack" as const,
-    title: "Full Stack Engineering & Cloud Deployment",
-    seoHeading: "Full Stack Development Services with API Integration and Cloud Infrastructure",
-    description:
-      "Build production-ready applications with resilient backend architecture, API integrations, and cloud deployment designed for scale.",
+    title: "Full Stack Development",
     points: [
-      "End-to-end application engineering from frontend to backend",
-      "RESTful API development, integration, and service orchestration",
-      "Database modeling, cloud deployment, and release maintenance",
+      "End-to-End Application Development",
+      "API Development & Integration",
+      "Backend Architecture & Database Design",
+      "Cloud Deployment & Maintenance",
     ],
-    stackLabel: "Tech Stack",
-    stack: "MERN Stack, PostgreSQL, AWS, Vercel",
+    stack: "Tech Stack: MERN Stack, PostgreSQL, AWS, Vercel",
   },
   {
-    id: "UX",
+    id: "4",
     icon: "uiux" as const,
-    title: "UI/UX Design & Product Experience Engineering",
-    seoHeading: "UI UX Design Services for Product Usability and Conversion Optimization",
-    description:
-      "Create intuitive interfaces and reusable design systems that improve user adoption, reduce friction, and strengthen product consistency.",
+    title: "UI/UX Design & Product Engineering",
     points: [
-      "Interface design and UX optimization for customer journeys",
-      "Interactive prototyping and validation using Figma workflows",
-      "Design systems and digital branding for product consistency",
+      "User Interface (UI) Design",
+      "User Experience (UX) Optimization",
+      "Product Prototyping (Figma)",
+      "Design Systems & Branding",
     ],
-    stackLabel: "Tools",
-    stack: "Figma, Adobe XD",
+    stack: "Tools: Figma, Adobe XD",
   },
   {
-    id: "DATA",
+    id: "5",
     icon: "analytics" as const,
-    title: "Data Analytics, BI Dashboards & Predictive Insights",
-    seoHeading: "Data Analytics and Business Intelligence Services for KPI Performance Tracking",
-    description:
-      "Convert raw operational data into actionable business intelligence with executive dashboards, KPI systems, and predictive analytics.",
+    title: "Data Analytics & Reporting",
     points: [
-      "Business intelligence dashboards for leadership and operations",
-      "Data visualization, reporting automation, and KPI monitoring",
-      "Predictive insight models for planning and growth strategy",
+      "Business Intelligence Dashboards",
+      "Data Visualization & Reporting",
+      "KPI Tracking Systems",
+      "Predictive Analytics (AI-based insights)",
     ],
-    stackLabel: "Tools",
-    stack: "Power BI, Tableau, Google Data Studio",
+    stack: "Tools: Power BI, Tableau, Google Data Studio",
   },
   {
-    id: "CRM",
+    id: "6",
     icon: "crm" as const,
-    title: "CRM Implementation & Sales Automation Systems",
-    seoHeading: "CRM Setup and Sales Pipeline Automation Services for Revenue Teams",
-    description:
-      "Implement CRM ecosystems that improve lead lifecycle visibility, automate pipeline activities, and increase sales team productivity.",
+    title: "CRM & Business Systems Setup",
     points: [
-      "CRM setup, customization, and role-based pipeline structure",
-      "Sales pipeline automation and lifecycle stage governance",
-      "Marketing and client management integrations for unified workflows",
+      "CRM Setup & Customization",
+      "Sales Pipeline Automation",
+      "Client Management Systems",
+      "Integration with Marketing Tools",
     ],
-    stackLabel: "Platforms",
-    stack: "HubSpot, Salesforce, Zoho CRM",
+    stack: "Platforms: HubSpot, Salesforce, Zoho CRM",
   },
   {
-    id: "OPS",
+    id: "7",
     icon: "ops" as const,
-    title: "Operations Software Integration for Healthcare & SMEs",
-    seoHeading: "Operations Software Integration Services for Scheduling, Payroll, and EHR Workflows",
-    description:
-      "Integrate critical operations platforms to streamline staffing, hiring, payroll, and clinical support workflows in one connected environment.",
+    title: "Operations Software & Integrations",
     points: [
-      "Scheduling system setup and operational workflow mapping",
-      "Hiring platform implementation including Apploi-based pipelines",
-      "Payroll, HR, and EHR/EMR integration support for healthcare teams",
+      "Scheduling System Setup",
+      "Hiring Platforms Setup (Apploi)",
+      "Payroll & HR Software Integration",
+      "EHR/EMR System Support (for healthcare clients)",
     ],
-    stackLabel: "Platforms",
-    stack: "Apploi, WellSky, Viventium",
+    stack: "Platforms: Apploi, WellSky, Viventium",
   },
   {
-    id: "SEO",
+    id: "8",
     icon: "growth" as const,
-    title: "Technical SEO, CRO & Website Performance Optimization",
-    seoHeading: "SEO Optimization Services for Search Visibility, Speed, and Conversion Growth",
-    description:
-      "Improve search rankings, site speed, and conversion performance using technical SEO, CRO strategy, and analytics-driven optimization.",
+    title: "Website Optimization & Growth",
     points: [
-      "On-page and technical SEO optimization for discoverability",
-      "Core Web Vitals and performance tuning for faster experiences",
-      "Conversion rate optimization and analytics tracking implementation",
+      "SEO Optimization",
+      "Speed & Performance Optimization",
+      "Conversion Rate Optimization (CRO)",
+      "Analytics & Tracking Setup",
     ],
-    stackLabel: "Tools",
-    stack: "Google Analytics, Search Console, Hotjar",
+    stack: "Tools: Google Analytics, Search Console, Hotjar",
   },
 ];
 
@@ -261,20 +237,15 @@ export default function ServicesPage() {
                   <span className="services-card-icon" aria-hidden="true">
                     <ServiceCategoryIcon type={block.icon} />
                   </span>
-                  <p className="services-card-index">{block.id}</p>
                 </div>
 
                 <h2>{block.title}</h2>
-                <h3>{block.seoHeading}</h3>
-                <p className="services-card-description">{block.description}</p>
                 <ul>
                   {block.points.map((point) => (
                     <li key={point}>{point}</li>
                   ))}
                 </ul>
-                <p className="services-card-stack">
-                  <strong>{block.stackLabel}:</strong> {block.stack}
-                </p>
+                <p className="services-card-stack">{block.stack}</p>
               </article>
             ))}
           </div>
