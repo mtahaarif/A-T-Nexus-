@@ -72,10 +72,6 @@
 
 :root {
 	--bg: #051010;
-	--ops-bg-dark: #051010;
-	--ops-bg-light: #072826;
-	--ops-bg-light-rgb: 7, 40, 38;
-	--ops-gradient-blend: 0;
 	--surface: #081c1c;
 	--card: #223133;
 	--card-soft: #1e2b2e;
@@ -790,6 +786,33 @@ img {
 	color: #d9fffb;
 }
 
+/* OpsGradient styles: scroll-driven gradient using CSS vars set by component */
+.ops-gradient-root {
+	--ops-dark: var(--bg, #051010);
+	--ops-light: color-mix(in srgb, var(--ops-dark) 50%, white);
+	--ops-t-pct: 0%;
+	background-image: linear-gradient(180deg, var(--ops-dark) 0%, var(--ops-light) 100%);
+	/* Make gradient taller so moving background-position shifts tone smoothly */
+	background-size: 100% 200%;
+	background-repeat: no-repeat;
+	/* background-position controlled by JS via --ops-t-pct */
+	background-position: center var(--ops-t-pct);
+	transition: background-position 300ms linear, background-color 300ms linear;
+}
+
+/* Ensure inner content preserves layout while gradient applies */
+.ops-gradient-root > main {
+	position: relative;
+	z-index: 2;
+}
+
+/* If browser doesn't support color-mix, provide fallback by using the CSS var already set by JS */
+@supports not (background-image: linear-gradient(180deg, var(--ops-light) 100%)) {
+	.ops-gradient-root {
+		background-image: linear-gradient(180deg, var(--ops-dark) 0%, var(--ops-light) 100%);
+	}
+}
+
 .home-insight-card p {
 	margin: 0;
 	font-size: clamp(0.99rem, 0.9rem + 0.18vw, 1.12rem);
@@ -1019,25 +1042,6 @@ img {
 
 .services-shell {
 	background: #f2f4f8;
-}
-
-/* Ops page gradient background layers */
-.ops-bg-layer {
-	position: fixed;
-	inset: 0;
-	z-index: -2;
-	pointer-events: none;
-	will-change: opacity;
-}
-
-.ops-bg-dark {
-	background: var(--ops-bg-dark);
-}
-
-.ops-bg-light {
-	/* gradient from transparent to the lighter color */
-	background: linear-gradient(to bottom, rgba(var(--ops-bg-light-rgb), 0) 0%, rgba(var(--ops-bg-light-rgb), 0.35) 40%, rgba(var(--ops-bg-light-rgb), 0.85) 75%, rgba(var(--ops-bg-light-rgb), 1) 100%);
-	opacity: calc(var(--ops-gradient-blend, 0));
 }
 
 .services-catalog-shell {

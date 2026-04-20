@@ -187,7 +187,7 @@ export default function HomeHealthCareOperationsPage() {
   return (
     <>
       <SiteHeader />
-      <OpsGradient />
+      <OpsGradient>
       <main>
         <section className="section-pad ops-redesign-hero">
           <div className="container reveal reveal-up">
@@ -257,6 +257,7 @@ export default function HomeHealthCareOperationsPage() {
 
         <CallToAction className="reveal reveal-up" />
       </main>
+      </OpsGradient>
       <SiteFooter />
     </>
   );
