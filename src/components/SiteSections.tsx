@@ -8,6 +8,80 @@ import {
   whyItems,
 } from "@/components/site-data";
 
+const whoWeAreHighlights = [
+  {
+    title: "SME Digital Transformation Partner",
+    text: "We help small and medium-sized businesses modernize operations with practical technology roadmaps.",
+  },
+  {
+    title: "Workflow Automation Specialists",
+    text: "We streamline repetitive processes using automation-first design and execution systems.",
+  },
+  {
+    title: "Backend Operations Expertise",
+    text: "Our team supports hiring, billing, care coordination, and process optimization at scale.",
+  },
+  {
+    title: "Healthcare-Ready Operations",
+    text: "We bring proven experience across home care, home health, and service-driven industries.",
+  },
+  {
+    title: "Execution-Led Delivery",
+    text: "We do more than consulting by implementing, managing, and continuously improving operations.",
+  },
+  {
+    title: "Data-Driven Operating Model",
+    text: "Our decisions are guided by measurable KPIs, workflow analytics, and real operational outcomes.",
+  },
+  {
+    title: "Cost & Efficiency Optimization",
+    text: "We reduce operational burden while improving speed, quality, and long-term scalability.",
+  },
+  {
+    title: "Systems Built For Scale",
+    text: "We convert complex business workflows into simple, reliable, and scalable systems.",
+  },
+];
+
+const deliveryHighlights = [
+  {
+    title: "Streamlined Operations",
+    text: "Eliminate inefficiencies with process-first workflow architecture and automation.",
+  },
+  {
+    title: "End-to-End Process Management",
+    text: "From hiring and onboarding to billing and day-to-day execution, we manage the full cycle.",
+  },
+  {
+    title: "Automation-Led Execution",
+    text: "Reduce manual effort through no-code, API-driven, and custom automation pipelines.",
+  },
+  {
+    title: "Scalable Infrastructure",
+    text: "Deploy systems engineered to grow with your team, clients, and operational demand.",
+  },
+  {
+    title: "Cost Optimization",
+    text: "Lower operating costs while preserving service quality, compliance, and performance.",
+  },
+  {
+    title: "Faster Turnaround Times",
+    text: "Improve response speed across scheduling, coordination, and operational handoffs.",
+  },
+  {
+    title: "Compliance-Ready Processes",
+    text: "Run structured, audit-ready workflows aligned with healthcare and industry requirements.",
+  },
+  {
+    title: "Actionable Insights",
+    text: "Enable strategic decisions with KPI reporting, trend visibility, and operational analytics.",
+  },
+  {
+    title: "Reliable Remote Support",
+    text: "Get consistent backend operations from experienced specialists across key business functions.",
+  },
+];
+
 export function HeroSection() {
   return (
     <section id="home" className="hero section-pad">
@@ -32,35 +106,42 @@ export function HeroSection() {
 
 export function HomeSplitSection() {
   return (
-    <section className="section-pad home-split-shell">
-      <div className="container home-split-grid reveal reveal-up">
-        <article className="home-split-card">
-          <h2>Who We Are</h2>
-          <ul>
-            <li>A&T Nexus is a digital transformation partner for small and medium-sized businesses.</li>
-            <li>We specialize in streamlining operations, automating workflows, and building scalable systems.</li>
-            <li>Our expertise covers backend operations, hiring, billing, care coordination, and process optimization.</li>
-            <li>We bring hands-on experience in healthcare, home care, and service-based industries.</li>
-            <li>We don&apos;t just consult, we implement, manage, and continuously optimize.</li>
-            <li>Our approach is practical, data-driven, and built for real-world execution.</li>
-            <li>We help businesses reduce operational burden, cut costs, and scale efficiently.</li>
-            <li>Focused on one goal: turning complex operations into simple, scalable systems.</li>
-          </ul>
+    <section className="section-pad home-insight-shell">
+      <div className="container home-insight-grid-wrap">
+        <article className="home-insight-panel reveal reveal-up">
+          <div className="home-insight-head">
+            <h2>Who We Are</h2>
+            <p>
+              A transformation-first team turning complex backend operations into
+              scalable, high-performance systems.
+            </p>
+          </div>
+          <div className="home-insight-grid">
+            {whoWeAreHighlights.map((item) => (
+              <article key={item.title} className="home-insight-card">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
         </article>
 
-        <article className="home-split-card">
-          <h2>What We Deliver</h2>
-          <ul>
-            <li>Streamlined Operations: simplified workflows that eliminate inefficiencies and save time.</li>
-            <li>End-to-End Process Management: from hiring and onboarding to billing and daily operations.</li>
-            <li>Automated Systems: reduced manual work through smart tools and digital workflows.</li>
-            <li>Scalable Infrastructure: systems designed to grow with your business.</li>
-            <li>Cost Optimization: lower operational expenses without compromising quality.</li>
-            <li>Faster Turnaround Times: improved speed across scheduling, coordination, and execution.</li>
-            <li>Compliance-Ready Processes: structured systems aligned with industry standards, especially healthcare and home care.</li>
-            <li>Actionable Insights: data-driven reporting to support better decision-making.</li>
-            <li>Reliable Remote Support: consistent backend operations handled by experienced professionals.</li>
-          </ul>
+        <article className="home-insight-panel reveal reveal-up">
+          <div className="home-insight-head">
+            <h2>What We Deliver</h2>
+            <p>
+              Measurable operational outcomes through automation, process
+              control, and data-backed execution.
+            </p>
+          </div>
+          <div className="home-insight-grid">
+            {deliveryHighlights.map((item) => (
+              <article key={item.title} className="home-insight-card">
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
         </article>
       </div>
     </section>

@@ -7,127 +7,196 @@ import { useRevealOnScroll } from "@/components/useRevealOnScroll";
 
 const operationsBlocks = [
   {
-    title: "1) Caregiver Recruitment & Applicant Management",
+    id: "01",
+    title: "VA Billing & Authorization",
+    seoHeading: "VA Billing & Authorization Management Services",
+    description:
+      "Ensure accurate VA reimbursement workflows through authorization control, claim tracking, and eligibility assurance.",
     points: [
-      "Sourcing and screening caregiver candidates.",
-      "Interview coordination and pipeline follow-up.",
-      "Applicant tracking updates and handoff management.",
+      "VA Billing (Veteran Affairs)",
+      "VA Authorization Entry & Management",
+      "Claims Submission & Follow-Ups",
+      "Eligibility Verification",
     ],
-    tools: "Tools: Apploi, hiring trackers, communication workflows",
+    software: "Software: WellSky, Availity, Waystar",
   },
   {
-    title: "2) Credentialing & Compliance File Management",
+    id: "02",
+    title: "Revenue Cycle Management (RCM)",
+    seoHeading: "Revenue Cycle Management Services for Home Health Cash Flow",
+    description:
+      "Stabilize cash flow with insurance validation, clean claims processing, and denial recovery workflows.",
     points: [
-      "Organize caregiver credentials, licenses, and certifications.",
-      "Track expirations and compliance deadlines.",
-      "Maintain audit-ready records for agency oversight.",
+      "Insurance Verification (Medicaid, Medicare, Private Pay)",
+      "Claims Processing & Tracking",
+      "Denials & Appeals Management",
+      "Payment Posting",
     ],
-    tools: "Tools: WellSky, credential trackers, compliance logs",
+    software: "Software: Kareo, AdvancedMD, Waystar",
   },
   {
-    title: "3) Scheduling & Shift Coordination",
+    id: "03",
+    title: "Care Coordination & Patient Management",
+    seoHeading: "Care Coordination & Patient Lifecycle Management",
+    description:
+      "Strengthen continuity of care through organized intake, care planning support, and communication workflows.",
     points: [
-      "Support weekly and daily caregiver scheduling.",
-      "Handle schedule changes, call-outs, and coverage requests.",
-      "Coordinate with field teams for continuity of care.",
+      "Patient Intake & Admissions",
+      "Care Plan Coordination",
+      "Family Communication",
+      "Visit Documentation Support",
     ],
-    tools: "Tools: WellSky, scheduling systems, shift coordination boards",
+    software: "Software: WellSky, AlayaCare, AxisCare",
   },
   {
-    title: "4) Patient Intake, Authorizations & Service Start Support",
+    id: "04",
+    title: "Scheduling & Staffing Operations",
+    seoHeading: "Scheduling & Staffing Operations Optimization",
+    description:
+      "Improve workforce utilization with intelligent scheduling, shift balancing, and attendance visibility.",
     points: [
-      "Assist intake teams with case setup and documentation checks.",
-      "Track authorization status and ensure timely follow-ups.",
-      "Coordinate service start prerequisites across stakeholders.",
+      "Caregiver Scheduling & Shift Management",
+      "Open Shift Coverage",
+      "Staff Allocation Optimization",
+      "Attendance Tracking",
     ],
-    tools: "Tools: Intake workflows, authorization trackers, case logs",
+    software: "Software: AxisCare, ClearCare, WellSky",
   },
   {
-    title: "5) EVV, Visit Validation & Documentation QA",
+    id: "05",
+    title: "HR & Caregiver Recruitment",
+    seoHeading: "Healthcare Staffing & Caregiver Recruitment Services",
+    description:
+      "Build stronger care teams with targeted sourcing, candidate qualification, and credential-ready hiring workflows.",
     points: [
-      "Review EVV records and visit exceptions.",
-      "Flag missing documentation and coordinate corrections.",
-      "Maintain quality checks to reduce billing delays.",
+      "Caregiver Sourcing (CNAs, HHAs, RNs, LPNs)",
+      "Screening & Shortlisting",
+      "Interview Coordination",
+      "Credential Verification",
     ],
-    tools: "Tools: EVV systems, QA checklists, exception tracking",
+    software: "Software: Apploi, Indeed, LinkedIn",
   },
   {
-    title: "6) Billing Operations, Claims Follow-Up & Collections Support",
+    id: "06",
+    title: "Onboarding, Orientation & Training",
+    seoHeading: "Onboarding, Orientation & Compliance Training Operations",
+    description:
+      "Launch new hires faster with standardized onboarding, policy training, and documentation governance.",
     points: [
-      "Prepare billing inputs and validate claim readiness.",
-      "Track denials, resubmissions, and follow-up activities.",
-      "Support payment posting and collections coordination.",
+      "New Hire Onboarding",
+      "Orientation Programs",
+      "Compliance Training",
+      "Documentation Handling",
     ],
-    tools: "Tools: Billing platforms, payer trackers, revenue workflows",
+    software: "Software: Apploi, Trainual, Google Workspace",
   },
   {
-    title: "7) Payroll Preparation & Viventium Support",
+    id: "07",
+    title: "Compliance & Documentation Support",
+    seoHeading: "Compliance Documentation & Audit Readiness Support",
+    description:
+      "Maintain clean records, policy governance, and audit-prepared documentation for agency-level compliance.",
     points: [
-      "Process timesheet validation and payroll input readiness.",
-      "Support payroll cycles and issue escalation.",
-      "Coordinate reconciliations between operations and payroll teams.",
+      "Client & Caregiver Files",
+      "Audit Preparation",
+      "Policy & Procedure Documentation",
+      "State Compliance Support",
     ],
-    tools: "Tools: Viventium, payroll reports, reconciliation sheets",
+    software: "Software: Google Drive, WellSky, Dropbox",
   },
   {
-    title: "8) Care Coordination & Patient/Family Communication Support",
+    id: "08",
+    title: "Lead Generation & Client Acquisition",
+    seoHeading: "Healthcare Lead Generation & Client Acquisition Services",
+    description:
+      "Scale referral and acquisition pipelines using targeted outreach, list intelligence, and CRM-driven lifecycle management.",
     points: [
-      "Manage follow-ups for caregiver-client continuity.",
-      "Coordinate non-clinical communication touchpoints.",
-      "Maintain timely updates across operations channels.",
+      "B2B Lead Generation (Hospitals, Physicians, Facilities)",
+      "Prospect List Building",
+      "Email Outreach Campaigns",
+      "CRM Pipeline Management",
     ],
-    tools: "Tools: CRM, call logs, communication trackers",
+    software: "Software: Apollo, HubSpot, Zoho CRM",
   },
   {
-    title: "9) Process Documentation, SOP Management & QA",
+    id: "09",
+    title: "Outbound Calling & Appointment Setting",
+    seoHeading: "Outbound Calling & Appointment Setting for Care Intake",
+    description:
+      "Increase conversion velocity through structured calling workflows, lead qualification, and appointment optimization.",
     points: [
-      "Create and maintain SOPs for recurring operations.",
-      "Standardize handoffs and reduce process variability.",
-      "Run quality audits and correction loops across teams.",
+      "Cold Calling & Follow-Ups",
+      "Lead Qualification",
+      "Appointment Booking",
+      "Script Optimization",
     ],
-    tools: "Tools: SOP repositories, QA templates, process scorecards",
+    software: "Tools: Aircall, Dialpad, Google Voice",
   },
   {
-    title: "10) KPI Reporting & Continuous Operations Improvement",
+    id: "10",
+    title: "Operations Management",
+    seoHeading: "End-to-End Operations Management & Performance Reporting",
+    description:
+      "Coordinate daily execution with cross-functional collaboration, admin support, and KPI-based reporting.",
     points: [
-      "Track operational KPIs for staffing, compliance, and billing.",
-      "Deliver structured reports with actionable recommendations.",
-      "Identify trends and optimize workflows month over month.",
+      "Daily Operations Handling",
+      "Internal Coordination",
+      "Reporting & Performance Tracking",
+      "Admin Support",
     ],
-    tools: "Tools: Dashboards, weekly review decks, performance analytics",
+    software: "Tools: Slack, ClickUp, Trello",
   },
+];
+
+const fullTimeStaffChallenges = [
+  "High salary costs (salary + benefits + taxes)",
+  "Time-consuming hiring & training",
+  "Limited skillset per employee",
+  "Risk of turnover & absenteeism",
+  "Requires office space & infrastructure",
+  "Slower scalability",
+];
+
+const atNexusAdvantages = [
+  "One team replaces multiple hires (billing + HR + admin + calling)",
+  "No hiring, training, or management burden",
+  "Pay only for work delivered (cost-efficient)",
+  "Trained professionals already experienced in home care systems",
+  "Scalable instantly (add or reduce workload anytime)",
+  "Fully remote, ready-to-go operations team",
+  "Familiar with industry tools (WellSky, Apploi, AxisCare, etc.)",
 ];
 
 const comparisonRows = [
   {
-    category: "Cost Structure",
-    fullTime: "High fixed costs with benefits, taxes, and overhead.",
-    dedicated: "Lean and scalable pricing model with clear monthly control.",
+    category: "Cost",
+    fullTime: "High fixed cost",
+    dedicated: "Flexible & scalable",
   },
   {
-    category: "Ramp-Up Time",
-    fullTime: "Long hiring and onboarding cycles before productivity.",
-    dedicated: "Fast deployment with operations-ready professionals.",
+    category: "Hiring time",
+    fullTime: "Weeks/months",
+    dedicated: "Immediate start",
   },
   {
-    category: "Coverage Reliability",
-    fullTime: "Single-resource gaps can create delays and disruptions.",
-    dedicated: "Managed continuity with structured backup support.",
+    category: "Skill coverage",
+    fullTime: "Limited",
+    dedicated: "Multi-skill team",
   },
   {
-    category: "Process Ownership",
-    fullTime: "Often dependent on individual habits and tribal knowledge.",
-    dedicated: "SOP-driven execution with documented workflows.",
-  },
-  {
-    category: "Performance Visibility",
-    fullTime: "Limited reporting and inconsistent KPI tracking.",
-    dedicated: "Regular KPI-based reporting and optimization reviews.",
+    category: "Training burden",
+    fullTime: "On you",
+    dedicated: "Already trained",
   },
   {
     category: "Scalability",
-    fullTime: "Scaling requires repeated hiring cycles.",
-    dedicated: "Flexible scale-up with evolving operational needs.",
+    fullTime: "Slow",
+    dedicated: "Instant",
+  },
+  {
+    category: "Risk",
+    fullTime: "High turnover",
+    dedicated: "Stable operations",
   },
 ];
 
@@ -138,66 +207,92 @@ export default function DedicatedRemoteOpsPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="section-pad ops-hero">
+        <section className="section-pad ops-redesign-hero">
           <div className="container reveal reveal-up">
-            <p className="ops-tag">Dedicated Home Care &amp; Home Health Operations</p>
-            <h1>Built For Agencies That Need Precision, Speed, And Scale</h1>
-            <p>
-              We support your agency&apos;s critical backend functions with
-              dedicated operations professionals who understand home care and
-              home health workflows end-to-end.
+            <p className="ops-redesign-kicker">Dedicated Home Care &amp; Home Health Operations</p>
+            <h1>Dedicated Home Care &amp; Home Health Operations</h1>
+            <p className="ops-redesign-subtitle">
+              &quot;From billing and staffing to lead generation and client
+              acquisition - we handle your entire backend operations.&quot;
             </p>
             <Link href="/services#contact" className="btn btn-primary">
-              Book A Strategy Session
+              Build Your Dedicated Ops Team
             </Link>
           </div>
         </section>
 
-        <section className="section-pad-sm ops-shell">
+        <section className="section-pad-sm ops-redesign-services">
           <div className="container reveal reveal-up">
             <div className="section-head">
-              <h2>Operational Coverage We Deliver</h2>
+              <h2>Backend Operations Coverage</h2>
               <p>
-                Dedicated support across recruitment, compliance, scheduling,
-                billing, payroll, coordination, and performance reporting.
+                Specialized operational support for home care and home health
+                agencies across billing, staffing, compliance, and growth.
               </p>
             </div>
 
-            <div className="ops-grid">
+            <div className="ops-redesign-grid">
               {operationsBlocks.map((block) => (
-                <article className="ops-card" key={block.title}>
+                <article className="ops-redesign-card" key={block.id}>
+                  <p className="ops-redesign-index">{block.id}</p>
                   <h3>{block.title}</h3>
+                  <h4>{block.seoHeading}</h4>
+                  <p className="ops-redesign-description">{block.description}</p>
                   <ul>
                     {block.points.map((point) => (
                       <li key={point}>{point}</li>
                     ))}
                   </ul>
-                  <p className="ops-tools">{block.tools}</p>
+                  <p className="ops-redesign-software">{block.software}</p>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="section-pad-sm ops-compare">
+        <section className="section-pad-sm ops-redesign-why">
           <div className="container reveal reveal-up">
             <div className="section-head">
               <h2>Why Choose Us Over Full-Time Employees</h2>
-              <p>
-                We provide operational consistency with stronger process control,
-                better visibility, and significantly lower administrative burden.
-              </p>
             </div>
 
-            <div className="ops-table" role="table" aria-label="Dedicated ops comparison">
-              <div className="ops-table-head" role="row">
-                <p role="columnheader">Category</p>
-                <p role="columnheader">Traditional Full-Time Employee</p>
-                <p role="columnheader">A&amp;T Nexus Dedicated Ops</p>
+            <div className="ops-redesign-why-grid">
+              <article className="ops-why-card ops-why-card-muted">
+                <h3>Hiring Full-Time Staff</h3>
+                <ul>
+                  {fullTimeStaffChallenges.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+
+              <article className="ops-why-card ops-why-card-accent">
+                <h3>Hiring A&amp;T Nexus (Us)</h3>
+                <ul>
+                  {atNexusAdvantages.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="section-pad-sm ops-redesign-table-shell">
+          <div className="container reveal reveal-up">
+            <div className="section-head">
+              <h2>Simple Comparison</h2>
+            </div>
+
+            <div className="ops-redesign-table" role="table" aria-label="Simple dedicated ops comparison">
+              <div className="ops-redesign-table-head" role="row">
+                <p role="columnheader">Aspect</p>
+                <p role="columnheader">Full-Time Staff</p>
+                <p role="columnheader">A&amp;T Nexus</p>
               </div>
 
               {comparisonRows.map((row) => (
-                <div className="ops-table-row" role="row" key={row.category}>
+                <div className="ops-redesign-table-row" role="row" key={row.category}>
                   <p>{row.category}</p>
                   <p>{row.fullTime}</p>
                   <p>{row.dedicated}</p>
@@ -207,14 +302,15 @@ export default function DedicatedRemoteOpsPage() {
           </div>
         </section>
 
-        <section className="section-pad ops-close">
+        <section className="section-pad ops-redesign-close">
           <div className="container reveal reveal-up">
-            <h2>Operational Excellence Without Internal Overhead</h2>
-            <p>
-              A&amp;T Nexus helps home care and home health agencies run lean,
-              compliant, and scalable operations while your internal teams focus
-              on patient outcomes and growth.
-            </p>
+            <h2>Closing Statement</h2>
+            <blockquote>
+              &quot;Instead of hiring multiple full-time employees, you get an
+              entire operations team that already understands home care
+              systems, billing workflows, recruitment, and client acquisition -
+              all under one roof.&quot;
+            </blockquote>
             <Link href="/services#contact" className="btn btn-primary">
               Start With Dedicated Ops
             </Link>
