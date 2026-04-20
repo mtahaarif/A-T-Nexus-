@@ -493,9 +493,6 @@ img {
 .home-insight-shell {
 	padding-top: 84px;
 	padding-bottom: 84px;
-	background:
-		radial-gradient(circle at 14% 0%, rgba(43, 170, 162, 0.12), transparent 42%),
-		radial-gradient(circle at 86% 100%, rgba(8, 130, 147, 0.14), transparent 40%);
 }
 
 .home-insight-grid-wrap {
@@ -507,7 +504,21 @@ img {
 .home-insight-panel {
 	padding: 0;
 	display: grid;
-	gap: 16px;
+	gap: 20px;
+}
+
+.home-insight-panel-who {
+	grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
+	align-items: start;
+	gap: 24px;
+}
+
+.home-insight-panel-who .home-insight-grid {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.home-insight-panel-deliver .home-insight-grid {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .home-insight-head {
@@ -516,12 +527,24 @@ img {
 	max-width: 980px;
 }
 
+.home-insight-head-deliver {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	align-items: start;
+	gap: 30px;
+	max-width: 100%;
+}
+
 .home-insight-head h2 {
 	margin: 0;
 	font-family: var(--font-head);
-	font-size: clamp(1.95rem, 1.45rem + 1.2vw, 2.8rem);
+	font-size: clamp(2rem, 1.35rem + 1.55vw, 3.15rem);
 	font-weight: 600;
 	line-height: 1.08;
+}
+
+.home-insight-head-who h2 {
+	font-size: clamp(2.3rem, 1.45rem + 2.4vw, 4.05rem);
+	line-height: 1.02;
 }
 
 .home-insight-head p {
@@ -542,55 +565,52 @@ img {
 }
 
 .home-insight-card {
-	position: relative;
-	overflow: hidden;
-	border-radius: 16px;
-	border: 1px solid rgba(105, 154, 150, 0.45);
-	background:
-		linear-gradient(135deg, rgba(22, 38, 41, 0.94), rgba(17, 30, 33, 0.9)),
-		radial-gradient(circle at 0% 0%, rgba(52, 196, 184, 0.2), transparent 42%);
-	box-shadow: 0 12px 22px rgba(0, 0, 0, 0.18);
-	padding: 14px 14px 13px;
+	border-radius: 22px;
+	padding: 16px;
 	display: grid;
-	gap: 9px;
+	gap: 10px;
 	align-content: start;
-	transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+	transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-.home-insight-card::before {
-	content: "";
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	height: 2px;
-	background: var(--gradient);
-	opacity: 0.7;
+.home-insight-card-who {
+	border: 0;
+	background: linear-gradient(90deg, rgba(49, 63, 65, 0.76) 0%, rgba(37, 50, 53, 0.8) 100%);
+}
+
+.home-insight-card-deliver {
+	border: 1px solid rgba(170, 192, 196, 0.82);
+	background: transparent;
+	border-radius: 34px;
 }
 
 .home-insight-card-head {
 	display: grid;
 	grid-template-columns: auto 1fr;
-	align-items: start;
+	align-items: center;
 	gap: 10px;
 }
 
 .home-insight-icon {
-	width: 34px;
-	height: 34px;
-	border-radius: 10px;
+	width: 42px;
+	height: 42px;
+	border-radius: 12px;
 	border: 1px solid rgba(117, 173, 169, 0.45);
-	background: linear-gradient(145deg, rgba(20, 49, 51, 0.78), rgba(14, 34, 37, 0.84));
+	background: rgba(16, 39, 41, 0.58);
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	flex-shrink: 0;
-	margin-top: 1px;
+}
+
+.home-insight-card-deliver .home-insight-icon {
+	background: transparent;
+	border-color: rgba(154, 185, 188, 0.72);
 }
 
 .home-insight-icon svg {
-	width: 18px;
-	height: 18px;
+	width: 22px;
+	height: 22px;
 	fill: none;
 	stroke: #9bfff3;
 	stroke-width: 2;
@@ -599,15 +619,15 @@ img {
 }
 
 .home-insight-card:hover {
-	transform: translateY(-5px);
+	transform: translateY(-6px);
 	border-color: rgba(118, 255, 236, 0.56);
-	box-shadow: 0 16px 28px rgba(0, 0, 0, 0.24);
+	box-shadow: 0 14px 26px rgba(0, 0, 0, 0.2);
 }
 
 .home-insight-card h3 {
 	margin: 0;
 	font-family: var(--font-head);
-	font-size: clamp(1rem, 0.96rem + 0.2vw, 1.15rem);
+	font-size: clamp(1.24rem, 1.08rem + 0.38vw, 1.52rem);
 	line-height: 1.3;
 	font-weight: 600;
 	color: #d9fffb;
@@ -615,7 +635,7 @@ img {
 
 .home-insight-card p {
 	margin: 0;
-	font-size: clamp(0.89rem, 0.86rem + 0.12vw, 0.97rem);
+	font-size: clamp(0.99rem, 0.9rem + 0.18vw, 1.12rem);
 	line-height: 1.5;
 	color: rgba(255, 255, 255, 0.8);
 	text-align: justify;
@@ -1954,6 +1974,16 @@ img {
 		max-width: 620px;
 	}
 
+	.home-insight-panel-who {
+		grid-template-columns: 1fr;
+		gap: 16px;
+	}
+
+	.home-insight-head-deliver {
+		grid-template-columns: 1fr;
+		gap: 10px;
+	}
+
 	.ops-redesign-grid {
 		grid-template-columns: 1fr;
 	}
@@ -2018,6 +2048,10 @@ img {
 
 	.home-insight-grid-wrap,
 	.ops-redesign-why-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.home-insight-head-deliver {
 		grid-template-columns: 1fr;
 	}
 

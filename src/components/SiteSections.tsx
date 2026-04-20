@@ -299,8 +299,8 @@ export function HomeSplitSection() {
   return (
     <section className="section-pad home-insight-shell">
       <div className="container home-insight-grid-wrap">
-        <article className="home-insight-panel reveal reveal-up">
-          <div className="home-insight-head">
+        <article className="home-insight-panel home-insight-panel-who reveal reveal-up">
+          <div className="home-insight-head home-insight-head-who">
             <h2>Who We Are</h2>
             <p>
               A transformation-first team turning complex backend operations into
@@ -309,7 +309,7 @@ export function HomeSplitSection() {
           </div>
           <div className="home-insight-grid">
             {whoWeAreHighlights.map((item) => (
-              <article key={item.title} className="home-insight-card">
+              <article key={item.title} className="home-insight-card home-insight-card-who">
                 <div className="home-insight-card-head">
                   <span className="home-insight-icon" aria-hidden="true">
                     <HomeInsightIcon type={item.icon} />
@@ -322,8 +322,8 @@ export function HomeSplitSection() {
           </div>
         </article>
 
-        <article className="home-insight-panel reveal reveal-up">
-          <div className="home-insight-head">
+        <article className="home-insight-panel home-insight-panel-deliver reveal reveal-up">
+          <div className="home-insight-head home-insight-head-deliver">
             <h2>What We Deliver</h2>
             <p>
               Measurable operational outcomes through automation, process
@@ -332,7 +332,7 @@ export function HomeSplitSection() {
           </div>
           <div className="home-insight-grid">
             {deliveryHighlights.map((item) => (
-              <article key={item.title} className="home-insight-card">
+              <article key={item.title} className="home-insight-card home-insight-card-deliver">
                 <div className="home-insight-card-head">
                   <span className="home-insight-icon" aria-hidden="true">
                     <HomeInsightIcon type={item.icon} />
