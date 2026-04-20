@@ -305,11 +305,13 @@ export default function DedicatedRemoteOpsPage() {
         <section className="section-pad ops-redesign-close">
           <div className="container reveal reveal-up">
             <h2>Closing Statement</h2>
-            <blockquote>
-              &quot;Instead of hiring multiple full-time employees, you get an
-              entire operations team that already understands home care
-              systems, billing workflows, recruitment, and client acquisition -
-              all under one roof.&quot;
+            <blockquote className="ops-fancy-quote">
+              <span>
+                Instead of hiring multiple full-time employees, you get an
+                entire operations team that already understands home care
+                systems, billing workflows, recruitment, and client acquisition
+                - all under one roof.
+              </span>
             </blockquote>
             <Link href="/services#contact" className="btn btn-primary">
               Start With Dedicated Ops
