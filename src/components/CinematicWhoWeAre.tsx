@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -16,48 +16,44 @@ export default function CinematicWhoWeAre() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start center", "end center"],
+    offset: ["start start", "end end"],
   });
 
-  const progress = useSpring(scrollYProgress, {
-    stiffness: 220,
-    damping: 34,
-    mass: 0.24,
-  });
+  const progress = scrollYProgress;
 
   const block1Opacity = useTransform(
     progress,
-    [0, 0.22, 0.34],
+    [0, 0.18, 0.3],
     [1, 1, 0]
   );
-  const block1Y = useTransform(progress, [0, 0.22, 0.34], [0, 0, -26]);
-  const block1Scale = useTransform(progress, [0, 0.22, 0.34], [1, 1, 0.985]);
+  const block1Y = useTransform(progress, [0, 0.18, 0.3], [0, 0, -24]);
+  const block1Scale = useTransform(progress, [0, 0.18, 0.3], [1, 1, 0.988]);
   const block1Filter = useTransform(
     progress,
-    [0, 0.24, 0.34],
-    ["blur(0px)", "blur(0px)", "blur(6px)"]
+    [0, 0.22, 0.3],
+    ["blur(0px)", "blur(0px)", "blur(5px)"]
   );
 
   const block2Opacity = useTransform(
     progress,
-    [0.29, 0.38, 0.58, 0.68],
+    [0.24, 0.34, 0.58, 0.68],
     [0, 1, 1, 0]
   );
-  const block2Y = useTransform(progress, [0.29, 0.5, 0.68], [24, 0, -24]);
-  const block2Scale = useTransform(progress, [0.29, 0.5, 0.68], [0.985, 1, 0.985]);
+  const block2Y = useTransform(progress, [0.24, 0.46, 0.68], [22, 0, -22]);
+  const block2Scale = useTransform(progress, [0.24, 0.46, 0.68], [0.988, 1, 0.988]);
   const block2Filter = useTransform(
     progress,
-    [0.29, 0.38, 0.58, 0.68],
-    ["blur(7px)", "blur(0px)", "blur(0px)", "blur(7px)"]
+    [0.24, 0.34, 0.58, 0.68],
+    ["blur(6px)", "blur(0px)", "blur(0px)", "blur(6px)"]
   );
 
-  const block3Opacity = useTransform(progress, [0.63, 0.72, 1], [0, 1, 1]);
-  const block3Y = useTransform(progress, [0.63, 0.8, 1], [22, 0, 0]);
-  const block3Scale = useTransform(progress, [0.63, 0.8, 1], [0.985, 1, 1]);
+  const block3Opacity = useTransform(progress, [0.56, 0.66, 1], [0, 1, 1]);
+  const block3Y = useTransform(progress, [0.56, 0.72, 1], [20, 0, 0]);
+  const block3Scale = useTransform(progress, [0.56, 0.72, 1], [0.99, 1, 1]);
   const block3Filter = useTransform(
     progress,
-    [0.63, 0.72, 1],
-    ["blur(7px)", "blur(0px)", "blur(0px)"]
+    [0.56, 0.66, 1],
+    ["blur(6px)", "blur(0px)", "blur(0px)"]
   );
 
   return (
@@ -80,7 +76,6 @@ export default function CinematicWhoWeAre() {
             className="cinematic-who-scene"
           >
             <div className="cinematic-who-content">
-              <p className="cinematic-who-kicker font-jakarta">Who We Are</p>
               <h2 className="cinematic-who-title font-outfit">
                 A&amp;T Nexus is a <span className="cinematic-who-highlight">digital transformation partner</span> for small and medium-sized businesses.
               </h2>
@@ -95,7 +90,6 @@ export default function CinematicWhoWeAre() {
             className="cinematic-who-scene"
           >
             <div className="cinematic-who-content">
-              <p className="cinematic-who-kicker font-jakarta">Who We Are</p>
               <h2 className="cinematic-who-title font-outfit">
                 Our expertise spans <span className="cinematic-who-highlight">backend operations, hiring, billing, care coordination, and process optimization</span>.
               </h2>
@@ -110,7 +104,6 @@ export default function CinematicWhoWeAre() {
             className="cinematic-who-scene"
           >
             <div className="cinematic-who-content">
-              <p className="cinematic-who-kicker font-jakarta">Who We Are</p>
               <h2 className="cinematic-who-title font-outfit">
                 Practical. Data-driven. <span className="cinematic-who-highlight">Built for real-world execution.</span>
               </h2>
@@ -125,7 +118,7 @@ export default function CinematicWhoWeAre() {
       <style jsx>{`
         .cinematic-who-shell {
           position: relative;
-          height: 300vh;
+          height: 360vh;
           background: #000000;
           isolation: isolate;
         }
@@ -138,7 +131,8 @@ export default function CinematicWhoWeAre() {
           align-items: center;
           justify-content: center;
           overflow: hidden;
-          padding: 0 24px;
+          box-sizing: border-box;
+          padding: clamp(56px, 11vh, 112px) clamp(28px, 6vw, 88px);
         }
 
         .cinematic-who-glow {
@@ -173,17 +167,9 @@ export default function CinematicWhoWeAre() {
         }
 
         .cinematic-who-content {
-          width: min(80vw, 1180px);
+          width: min(82vw, 1240px);
+          max-width: 100%;
           text-align: center;
-        }
-
-        .cinematic-who-kicker {
-          margin: 0 0 18px;
-          color: rgba(20, 241, 217, 0.92);
-          font-size: clamp(0.86rem, 0.78rem + 0.24vw, 1rem);
-          font-weight: 600;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
         }
 
         .cinematic-who-title {
@@ -211,17 +197,17 @@ export default function CinematicWhoWeAre() {
 
         @media (max-width: 980px) {
           .cinematic-who-sticky {
-            padding: 0 18px;
+            padding: clamp(44px, 9vh, 84px) clamp(20px, 5vw, 40px);
           }
 
           .cinematic-who-content {
-            width: min(88vw, 760px);
+            width: min(90vw, 860px);
           }
         }
 
         @media (max-width: 640px) {
           .cinematic-who-sticky {
-            padding: 0 14px;
+            padding: clamp(34px, 8vh, 68px) 14px;
           }
 
           .cinematic-who-title {
