@@ -22,7 +22,7 @@ const operationsBlocks = [
       "Claims Submission & Follow-Ups",
       "Eligibility Verification",
     ],
-    software: "Software: WellSky, Availity, Waystar",
+    software: "Software: Optum Community Care Network (CCN)",
   },
   {
     id: "02",
@@ -36,7 +36,7 @@ const operationsBlocks = [
       "Denials & Appeals Management",
       "Payment Posting",
     ],
-    software: "Software: Kareo, AdvancedMD, Waystar",
+    software: "Software: Kinnser(Wellsky), Waystar, Optum, Quickbooks",
   },
   {
     id: "03",
@@ -50,7 +50,7 @@ const operationsBlocks = [
       "Family Communication",
       "Visit Documentation Support",
     ],
-    software: "Software: WellSky, AlayaCare, AxisCare",
+    software: "Software: Wellsky, Verveware",
   },
   {
     id: "04",
@@ -64,7 +64,7 @@ const operationsBlocks = [
       "Staff Allocation Optimization",
       "Attendance Tracking",
     ],
-    software: "Software: AxisCare, ClearCare, WellSky",
+    software: "Software: ClearCare(Wellsky), Verveware",
   },
   {
     id: "05",
@@ -78,7 +78,7 @@ const operationsBlocks = [
       "Interview Coordination",
       "Credential Verification",
     ],
-    software: "Software: Apploi, Indeed, LinkedIn",
+    software: "Software: Apploi, Indeed, Linkedin, Ziprecruiter, Custom built Hr system trackers",
   },
   {
     id: "06",
@@ -92,7 +92,7 @@ const operationsBlocks = [
       "Compliance Training",
       "Documentation Handling",
     ],
-    software: "Software: Apploi, Trainual, Google Workspace",
+    software: "Software: Apploi, Zoom, Caregiverlist, MS365 office stack",
   },
   {
     id: "07",
@@ -106,7 +106,7 @@ const operationsBlocks = [
       "Policy & Procedure Documentation",
       "State Compliance Support",
     ],
-    software: "Software: Google Drive, WellSky, Dropbox",
+    software: "Software: Googledrive, Sharepoint, Onedrive, Wellsky",
   },
   {
     id: "08",
@@ -120,7 +120,7 @@ const operationsBlocks = [
       "Email Outreach Campaigns",
       "CRM Pipeline Management",
     ],
-    software: "Software: Apollo, HubSpot, Zoho CRM",
+    software: "Software: Apollo, Gmaps, Hubspot, Zoho, Go high level",
   },
   {
     id: "09",
@@ -134,7 +134,7 @@ const operationsBlocks = [
       "Appointment Booking",
       "Script Optimization",
     ],
-    software: "Tools: Aircall, Dialpad, Google Voice",
+    software: "Software: RingCentral, Openphone, Googlevoice",
   },
   {
     id: "10",
@@ -148,7 +148,7 @@ const operationsBlocks = [
       "Reporting & Performance Tracking",
       "Admin Support",
     ],
-    software: "Tools: Slack, ClickUp, Trello",
+    software: "Software: Ms Teams, Slack",
   },
 ];
 
@@ -180,7 +180,7 @@ const atNexusAdvantages = [
   "Familiar with industry tools (WellSky, Apploi, AxisCare, etc.)",
 ];
 
-export default function DedicatedRemoteOpsPage() {
+export default function HomeHealthCareOperationsPage() {
   useRevealOnScroll();
 
   return (
@@ -189,14 +189,24 @@ export default function DedicatedRemoteOpsPage() {
       <main>
         <section className="section-pad ops-redesign-hero">
           <div className="container reveal reveal-up">
-            <h1>Dedicated Home Care &amp; Home Health Operations</h1>
-            <p className="ops-redesign-subtitle">
-              &quot;From billing and staffing to lead generation and client
-              acquisition - we handle your entire backend operations.&quot;
-            </p>
-            <Link href="/services#contact" className="btn btn-primary">
-              Build Your Dedicated Ops Team
-            </Link>
+            <div className="ops-hero-copy">
+              <h1>Home Health Care Operations</h1>
+              <p className="ops-redesign-subtitle">
+                "From billing and staffing to lead generation and client acquisition - we
+                handle your entire backend operations."
+              </p>
+              <Link href="/services#contact" className="btn btn-primary">
+                Build Your Dedicated Ops Team
+              </Link>
+            </div>
+
+            <div className="ops-hero-illustration" aria-hidden="true">
+              <img
+                src="/theme/home_care_operations.png"
+                alt=""
+                className="ops-hero-illustration-img"
+              />
+            </div>
           </div>
         </section>
 

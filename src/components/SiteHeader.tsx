@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useRef } from "react";
 import { primaryNavLinks, serviceMenuLinks } from "@/components/site-data";
 
 function isActivePath(pathname: string, href: string) {
@@ -16,11 +16,13 @@ function isActivePath(pathname: string, href: string) {
 export default function SiteHeader() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServiceOpen, setIsServiceOpen] = useState(false);
+  const navDropdownRef = useRef<HTMLDivElement | null>(null);
 
   const orderedLinks = useMemo(() => primaryNavLinks, []);
   const serviceLinks = useMemo(() => serviceMenuLinks, []);
   const serviceActive =
-    pathname.startsWith("/services") || pathname.startsWith("/dedicated-remote-ops");
+    pathname.startsWith("/services") || pathname.startsWith("/home-health-care-operations");
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", isMenuOpen);
@@ -29,6 +31,28 @@ export default function SiteHeader() {
       document.body.classList.remove("menu-open");
     };
   }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isServiceOpen) return;
+
+    const handleDocClick = (e: MouseEvent) => {
+      if (!navDropdownRef.current) return;
+      if (navDropdownRef.current.contains(e.target as Node)) return;
+      setIsServiceOpen(false);
+    };
+
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsServiceOpen(false);
+    };
+
+    document.addEventListener("click", handleDocClick);
+    document.addEventListener("keydown", handleKey);
+
+    return () => {
+      document.removeEventListener("click", handleDocClick);
+      document.removeEventListener("keydown", handleKey);
+    };
+  }, [isServiceOpen]);
 
   return (
     <>
@@ -50,10 +74,39 @@ export default function SiteHeader() {
               </Link>
             ))}
 
-            <div className={`nav-dropdown ${serviceActive ? "is-active" : ""}`}>
-              <Link href="/services" className="nav-dropdown-trigger">
-                Services
-              </Link>
+            <div
+              ref={navDropdownRef}
+              className={`nav-dropdown ${serviceActive ? "is-active" : ""} ${isServiceOpen ? "open" : ""}`}
+            >
+              <button
+                type="button"
+                className="nav-dropdown-trigger"
+                aria-expanded={isServiceOpen}
+                aria-haspopup="true"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setIsServiceOpen((s) => !s);
+                }}
+              >
+                <span>Services</span>
+                <svg
+                  className="nav-dropdown-caret"
+                  width="12"
+                  height="8"
+                  viewBox="0 0 12 8"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M1 1l5 5 5-5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+
               <div className="nav-dropdown-menu" role="menu" aria-label="Services menu">
                 {serviceLinks.map((item) => (
                   <Link
@@ -61,6 +114,7 @@ export default function SiteHeader() {
                     href={item.href}
                     className="nav-dropdown-item"
                     role="menuitem"
+                    onClick={() => setIsServiceOpen(false)}
                   >
                     {item.label}
                   </Link>

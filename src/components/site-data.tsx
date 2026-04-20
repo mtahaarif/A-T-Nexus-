@@ -19,7 +19,7 @@ export const primaryNavLinks = [
 
 export const serviceMenuLinks = [
   { href: "/services", label: "IT Services" },
-  { href: "/dedicated-remote-ops", label: "Dedicated Ops" },
+  { href: "/home-health-care-operations", label: "Home Health Care Operations" },
 ] as const;
 
 export const missionCards: MissionCard[] = [
