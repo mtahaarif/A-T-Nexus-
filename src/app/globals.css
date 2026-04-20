@@ -72,6 +72,10 @@
 
 :root {
 	--bg: #051010;
+	--ops-bg-dark: #051010;
+	--ops-bg-light: #072826;
+	--ops-bg-light-rgb: 7, 40, 38;
+	--ops-gradient-blend: 0;
 	--surface: #081c1c;
 	--card: #223133;
 	--card-soft: #1e2b2e;
@@ -1015,6 +1019,25 @@ img {
 
 .services-shell {
 	background: #f2f4f8;
+}
+
+/* Ops page gradient background layers */
+.ops-bg-layer {
+	position: fixed;
+	inset: 0;
+	z-index: -2;
+	pointer-events: none;
+	will-change: opacity;
+}
+
+.ops-bg-dark {
+	background: var(--ops-bg-dark);
+}
+
+.ops-bg-light {
+	/* gradient from transparent to the lighter color */
+	background: linear-gradient(to bottom, rgba(var(--ops-bg-light-rgb), 0) 0%, rgba(var(--ops-bg-light-rgb), 0.35) 40%, rgba(var(--ops-bg-light-rgb), 0.85) 75%, rgba(var(--ops-bg-light-rgb), 1) 100%);
+	opacity: calc(var(--ops-gradient-blend, 0));
 }
 
 .services-catalog-shell {
