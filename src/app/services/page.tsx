@@ -19,9 +19,11 @@ function ServiceCategoryIcon({ type }: { type: ServiceIconType }) {
   switch (type) {
     case "ai":
       return (
-        <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
-          <text x="32" y="40" textAnchor="middle" fontFamily="Gilroy, var(--font-body), sans-serif" fontWeight="700" fontSize="24" fill="#9bfff3">AI</text>
-        </svg>
+        <img
+          src="/theme/AI.png"
+          alt="AI"
+          style={{ width: 48, height: 48, objectFit: "contain" }}
+        />
       );
     case "web":
       return (
@@ -35,28 +37,19 @@ function ServiceCategoryIcon({ type }: { type: ServiceIconType }) {
       );
     case "fullstack":
       return (
-        <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
-          <rect x="10" y="10" width="44" height="12" rx="3" />
-          <rect x="10" y="26" width="44" height="12" rx="3" />
-          <rect x="10" y="42" width="44" height="12" rx="3" />
-          <path d="M18 16h4" />
-          <path d="M18 32h4" />
-          <path d="M18 48h4" />
-          <path d="M30 16h16" />
-          <path d="M30 32h16" />
-          <path d="M30 48h16" />
-        </svg>
+        <img
+          src="/theme/fullstack.png"
+          alt="Full Stack"
+          style={{ width: 48, height: 48, objectFit: "contain" }}
+        />
       );
     case "uiux":
       return (
-        <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
-          <rect x="8" y="10" width="28" height="44" rx="4" />
-          <rect x="40" y="10" width="16" height="16" rx="3" />
-          <rect x="40" y="30" width="16" height="24" rx="3" />
-          <path d="M16 22h12" />
-          <path d="M16 30h12" />
-          <path d="M16 38h8" />
-        </svg>
+        <img
+          src="/theme/UIUX.png"
+          alt="UI/UX"
+          style={{ width: 48, height: 48, objectFit: "contain" }}
+        />
       );
     case "analytics":
       return (
