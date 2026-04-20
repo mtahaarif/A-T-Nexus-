@@ -1029,6 +1029,16 @@ img {
 	margin-bottom: 26px;
 }
 
+/* Centered variant for services page heading */
+.services-catalog-head.services-catalog-head--centered {
+    grid-template-columns: 1fr;
+    text-align: center;
+}
+
+.services-catalog-head.services-catalog-head--centered .services-catalog-copy {
+    justify-self: center;
+}
+
 .services-catalog-copy h1 {
 	margin: 0;
 	font-family: var(--font-head);

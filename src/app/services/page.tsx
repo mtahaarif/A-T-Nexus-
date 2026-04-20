@@ -207,15 +207,15 @@ export default function ServicesPage() {
       <SiteHeader />
       <main>
         <section className="section-pad services-catalog-shell">
-          <div className="container services-catalog-head reveal reveal-up">
+          <div className="container services-catalog-head services-catalog-head--centered reveal reveal-up">
             <div className="services-catalog-copy">
               <h1>IT Services</h1>
+              <p className="services-catalog-intro">
+                Growth-focused IT services built for SMEs, healthcare businesses,
+                and modern teams that need automation, scalable systems, and
+                measurable digital performance.
+              </p>
             </div>
-            <p className="services-catalog-intro">
-              Growth-focused IT services built for SMEs, healthcare businesses,
-              and modern teams that need automation, scalable systems, and
-              measurable digital performance.
-            </p>
           </div>
 
           <div className="container services-catalog-grid reveal reveal-up">
