@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -19,14 +19,18 @@ export default function CinematicWhoWeAre() {
     offset: ["start start", "end end"],
   });
 
-  const progress = scrollYProgress;
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 900,
+    damping: 90,
+    mass: 0.18,
+  });
 
   const block1Opacity = useTransform(
     progress,
     [0, 0.18, 0.3],
     [1, 1, 0]
   );
-  const block1Y = useTransform(progress, [0, 0.18, 0.3], [0, 0, -24]);
+  const block1Y = useTransform(progress, [0, 0.18, 0.3], [22, 0, -22]);
   const block1Scale = useTransform(progress, [0, 0.18, 0.3], [1, 1, 0.988]);
   const block1Filter = useTransform(
     progress,
@@ -48,7 +52,7 @@ export default function CinematicWhoWeAre() {
   );
 
   const block3Opacity = useTransform(progress, [0.56, 0.66, 1], [0, 1, 1]);
-  const block3Y = useTransform(progress, [0.56, 0.72, 1], [20, 0, 0]);
+  const block3Y = useTransform(progress, [0.56, 0.72, 1], [22, 0, -22]);
   const block3Scale = useTransform(progress, [0.56, 0.72, 1], [0.99, 1, 1]);
   const block3Filter = useTransform(
     progress,
