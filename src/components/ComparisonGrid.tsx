@@ -17,8 +17,8 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 const comparisonRows: ComparisonRow[] = [
-  { aspect: "Cost", fullTime: "High fixed cost", atNexus: "Flexible & scalable" },
   { aspect: "Annual expenses", fullTime: "$60,000 - $65,000", atNexus: "50% less expenses" },
+  { aspect: "Cost", fullTime: "High fixed cost", atNexus: "Flexible & scalable" },
   { aspect: "Hiring time", fullTime: "Weeks/months", atNexus: "Immediate start" },
   { aspect: "Skill coverage", fullTime: "Limited", atNexus: "Multi-skill team" },
   { aspect: "Training burden", fullTime: "On you", atNexus: "Already trained" },

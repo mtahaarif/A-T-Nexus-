@@ -3,37 +3,58 @@
 import { FormEvent, useState } from "react";
 
 export default function ContactSection() {
-  const [contactStatus, setContactStatus] = useState("");
-  const [sending, setSending] = useState(false);
+  const [contactStatus, setContactStatus] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleContactSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setContactStatus(null);
+    setIsSubmitting(true);
+
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const payload = Object.fromEntries(formData.entries());
+
+    const payload = {
+      name: String(formData.get("name") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      service: String(formData.get("service") ?? "").trim(),
+      message: String(formData.get("message") ?? "").trim(),
+      source: "services-contact-form",
+    };
 
     try {
-      setSending(true);
-      setContactStatus("Sending message...");
-
-      const res = await fetch("/api/contact", {
+      const response = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(payload),
       });
 
-      const json = await res.json();
-      if (res.ok) {
-        setContactStatus(json.message || "Message sent. We'll be in touch.");
-        form.reset();
-      } else {
-        setContactStatus(json.error || "Unable to send message.");
+      const result = (await response.json().catch(() => null)) as
+        | { success?: boolean; message?: string }
+        | null;
+
+      if (!response.ok || !result?.success) {
+        throw new Error(result?.message || "Unable to send your message right now.");
       }
-    } catch (err) {
-      console.error("Contact submit error", err);
-      setContactStatus("Error sending message. Please try again later.");
+
+      setContactStatus({
+        type: "success",
+        message: result.message || "Message sent successfully.",
+      });
+      form.reset();
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Unable to send your message right now. Please try again.";
+      setContactStatus({ type: "error", message });
     } finally {
-      setSending(false);
+      setIsSubmitting(false);
     }
   };
 
@@ -53,6 +74,8 @@ export default function ContactSection() {
                 <img
                   src="https://atnexus.io/wp-content/uploads/2025/10/Frame-48.png"
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                 />
               </span>
               <div>
@@ -66,6 +89,8 @@ export default function ContactSection() {
                 <img
                   src="https://atnexus.io/wp-content/uploads/2025/10/Group-1948755046.png"
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                 />
               </span>
               <div>
@@ -79,6 +104,8 @@ export default function ContactSection() {
                 <img
                   src="https://atnexus.io/wp-content/uploads/2025/10/Frame-48-1.png"
                   alt=""
+                  loading="lazy"
+                  decoding="async"
                 />
               </span>
               <div>
@@ -109,11 +136,23 @@ export default function ContactSection() {
               <textarea name="message" rows={4} placeholder="Message" required />
             </label>
 
-            <button type="submit" className="btn btn-primary submit-btn" disabled={sending}>
-              {sending ? "Sending..." : "Submit"}
+            <button
+              type="submit"
+              className="btn btn-primary submit-btn"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Sending..." : "Submit"}
             </button>
 
-            {contactStatus ? <p className="form-status">{contactStatus}</p> : null}
+            {contactStatus ? (
+              <p
+                className={`form-status ${contactStatus.type === "error" ? "is-error" : ""}`}
+                role="status"
+                aria-live="polite"
+              >
+                {contactStatus.message}
+              </p>
+            ) : null}
           </form>
         </div>
       </div>

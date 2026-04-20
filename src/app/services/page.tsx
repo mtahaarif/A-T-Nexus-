@@ -16,32 +16,27 @@ type ServiceIconType =
   | "growth";
 
 function ServiceCategoryIcon({ type }: { type: ServiceIconType }) {
+  const iconImages: Partial<Record<ServiceIconType, string>> = {
+    ai: "/theme/ai.png",
+    fullstack: "/theme/fullstack.png",
+    uiux: "/theme/uiux.png",
+  };
+
+  const imageSrc = iconImages[type];
+  if (imageSrc) {
+    return (
+      <img
+        src={imageSrc}
+        alt=""
+        aria-hidden="true"
+        className="services-card-icon-img"
+        loading="lazy"
+        decoding="async"
+      />
+    );
+  }
+
   switch (type) {
-    case "ai":
-      return (
-        <>
-          <img
-            src="/theme/ai.png"
-            alt="AI"
-            className="services-icon-img"
-            onError={(e: any) => {
-              e.currentTarget.style.display = "none";
-              const sib = e.currentTarget.nextElementSibling as HTMLElement | null;
-              if (sib) sib.style.display = "inline-block";
-            }}
-          />
-          <svg
-            className="services-icon-fallback"
-            style={{ display: "none", width: 48, height: 48 }}
-            viewBox="0 0 64 64"
-            role="img"
-            aria-hidden="true"
-          >
-            <rect x="6" y="6" width="52" height="52" rx="10" fill="#102729" />
-            <text x="32" y="38" textAnchor="middle" fontFamily="Gilroy, var(--font-body), sans-serif" fontWeight="700" fontSize="18" fill="#9bfff3">AI</text>
-          </svg>
-        </>
-      );
     case "web":
       return (
         <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
@@ -51,56 +46,6 @@ function ServiceCategoryIcon({ type }: { type: ServiceIconType }) {
           <rect x="42" y="28" width="14" height="24" rx="3" />
           <path d="M46 32h6" />
         </svg>
-      );
-    case "fullstack":
-      return (
-        <>
-          <img
-            src="/theme/fullstack.png"
-            alt="Full Stack"
-            className="services-icon-img"
-            onError={(e: any) => {
-              e.currentTarget.style.display = "none";
-              const sib = e.currentTarget.nextElementSibling as HTMLElement | null;
-              if (sib) sib.style.display = "inline-block";
-            }}
-          />
-          <svg
-            className="services-icon-fallback"
-            style={{ display: "none", width: 48, height: 48 }}
-            viewBox="0 0 64 64"
-            role="img"
-            aria-hidden="true"
-          >
-            <rect x="6" y="6" width="52" height="52" rx="10" fill="#102729" />
-            <text x="32" y="38" textAnchor="middle" fontFamily="Gilroy, var(--font-body), sans-serif" fontWeight="700" fontSize="12" fill="#9bfff3">Full\nStack</text>
-          </svg>
-        </>
-      );
-    case "uiux":
-      return (
-        <>
-          <img
-            src="/theme/uiux.png"
-            alt="UI/UX"
-            className="services-icon-img"
-            onError={(e: any) => {
-              e.currentTarget.style.display = "none";
-              const sib = e.currentTarget.nextElementSibling as HTMLElement | null;
-              if (sib) sib.style.display = "inline-block";
-            }}
-          />
-          <svg
-            className="services-icon-fallback"
-            style={{ display: "none", width: 48, height: 48 }}
-            viewBox="0 0 64 64"
-            role="img"
-            aria-hidden="true"
-          >
-            <rect x="6" y="6" width="52" height="52" rx="10" fill="#102729" />
-            <text x="32" y="34" textAnchor="middle" fontFamily="Gilroy, var(--font-body), sans-serif" fontWeight="700" fontSize="12" fill="#9bfff3">UI/UX</text>
-          </svg>
-        </>
       );
     case "analytics":
       return (
@@ -258,15 +203,15 @@ export default function ServicesPage() {
       <SiteHeader />
       <main>
         <section className="section-pad services-catalog-shell">
-          <div className="container services-catalog-head services-catalog-head--centered reveal reveal-up">
+          <div className="container services-catalog-head reveal reveal-up">
             <div className="services-catalog-copy">
               <h1>IT Services</h1>
-              <p className="services-catalog-intro">
-                Growth-focused IT services built for SMEs, healthcare businesses,
-                and modern teams that need automation, scalable systems, and
-                measurable digital performance.
-              </p>
             </div>
+            <p className="services-catalog-intro">
+              Growth-focused IT services built for SMEs, healthcare businesses,
+              and modern teams that need automation, scalable systems, and
+              measurable digital performance.
+            </p>
           </div>
 
           <div className="container services-catalog-grid reveal reveal-up">

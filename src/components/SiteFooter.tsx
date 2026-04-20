@@ -12,39 +12,52 @@ const quickLinks = [
 ];
 
 export default function SiteFooter() {
-  const [newsletterStatus, setNewsletterStatus] = useState("");
-  const [newsletterSending, setNewsletterSending] = useState(false);
+  const [newsletterStatus, setNewsletterStatus] = useState<{
+    type: "success" | "error";
+    message: string;
+  } | null>(null);
+  const [isSubscribing, setIsSubscribing] = useState(false);
   const currentYear = new Date().getFullYear();
 
   const handleNewsletterSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setNewsletterStatus(null);
+    setIsSubscribing(true);
+
     const form = event.currentTarget;
-    const emailInput = form.querySelector('input[type="email"]') as HTMLInputElement | null;
-    const email = emailInput?.value;
-    if (!email) return;
+    const formData = new FormData(form);
+    const email = String(formData.get("email") ?? "").trim();
 
     try {
-      setNewsletterSending(true);
-      setNewsletterStatus("Subscribing...");
-
-      const res = await fetch("/api/newsletter", {
+      const response = await fetch("/api/newsletter", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, source: "footer-newsletter" }),
       });
 
-      const json = await res.json();
-      if (res.ok) {
-        setNewsletterStatus(json.message || "Subscribed. Check your inbox.");
-        form.reset();
-      } else {
-        setNewsletterStatus(json.error || "Subscription failed.");
+      const result = (await response.json().catch(() => null)) as
+        | { success?: boolean; message?: string }
+        | null;
+
+      if (!response.ok || !result?.success) {
+        throw new Error(result?.message || "Unable to subscribe right now.");
       }
-    } catch (err) {
-      console.error("Newsletter subscribe error", err);
-      setNewsletterStatus("Error subscribing. Try again later.");
+
+      setNewsletterStatus({
+        type: "success",
+        message: result.message || "You are subscribed. Watch your inbox for updates.",
+      });
+      form.reset();
+    } catch (error) {
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Unable to subscribe right now. Please try again.";
+      setNewsletterStatus({ type: "error", message });
     } finally {
-      setNewsletterSending(false);
+      setIsSubscribing(false);
     }
   };
 
@@ -70,7 +83,7 @@ export default function SiteFooter() {
 
           <section className="footer-col brand-col">
             <Link href="/" className="footer-brand" aria-label="A&T Nexus home">
-              <img src="/theme/logo-no-text.png" alt="A&T Nexus" />
+              <img src="/theme/logo-no-text.png" alt="A&T Nexus" loading="lazy" decoding="async" />
               <span>A&amp;T Nexus</span>
             </Link>
             <p>
@@ -121,11 +134,26 @@ export default function SiteFooter() {
             <p>Subscribe for exclusive deals and updates!</p>
             <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
               <div className="newsletter-pill">
-                <input type="email" placeholder="Email Address..." required />
-                <button type="submit" disabled={newsletterSending}>{newsletterSending ? "Subscribing..." : "Subscribe"}</button>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address..."
+                  required
+                />
+                <button type="submit" disabled={isSubscribing}>
+                  {isSubscribing ? "Subscribing..." : "Subscribe"}
+                </button>
               </div>
             </form>
-            {newsletterStatus ? <p className="form-status">{newsletterStatus}</p> : null}
+            {newsletterStatus ? (
+              <p
+                className={`form-status ${newsletterStatus.type === "error" ? "is-error" : ""}`}
+                role="status"
+                aria-live="polite"
+              >
+                {newsletterStatus.message}
+              </p>
+            ) : null}
           </section>
         </div>
 

@@ -7,7 +7,6 @@ import CallToAction from "@/components/CallToAction";
 import ComparisonGrid from "@/components/ComparisonGrid";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
-import OpsGradient from "@/components/OpsGradient";
 import { useRevealOnScroll } from "@/components/useRevealOnScroll";
 
 const operationsBlocks = [
@@ -187,8 +186,7 @@ export default function HomeHealthCareOperationsPage() {
   return (
     <>
       <SiteHeader />
-      <OpsGradient>
-      <main>
+      <main className="ops-redesign-main">
         <section className="section-pad ops-redesign-hero">
           <div className="container reveal reveal-up">
             <div className="ops-hero-copy">
@@ -257,7 +255,6 @@ export default function HomeHealthCareOperationsPage() {
 
         <CallToAction className="reveal reveal-up" />
       </main>
-      </OpsGradient>
       <SiteFooter />
     </>
   );

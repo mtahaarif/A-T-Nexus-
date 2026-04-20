@@ -246,6 +246,8 @@ export function LeadershipSection() {
             <img
               src="https://atnexus.io/wp-content/uploads/2025/10/Group-1948755045.png"
               alt="Waleed Arif"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <h3>Waleed Arif</h3>
@@ -293,7 +295,7 @@ export function AffiliationsSection() {
           <div className="marquee-track">
             {marqueeLogos.map((logo, index) => (
               <figure className="logo-chip" key={`${logo}-${index}`}>
-                <img src={logo} alt="Affiliation logo" />
+                <img src={logo} alt="Affiliation logo" loading="lazy" decoding="async" />
               </figure>
             ))}
           </div>
