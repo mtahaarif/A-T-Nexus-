@@ -129,6 +129,39 @@ body {
 	color: var(--text);
 }
 
+/* Rectangular neon scrollbar with no arrow buttons */
+html {
+	scrollbar-width: thin;
+	scrollbar-color: var(--accent-2) color-mix(in srgb, var(--bg) 90%, #ffffff 10%);
+}
+
+html::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+
+html::-webkit-scrollbar-track {
+	background: color-mix(in srgb, var(--bg) 90%, #ffffff 10%);
+	border-radius: 0;
+}
+
+html::-webkit-scrollbar-thumb {
+	background: linear-gradient(180deg, var(--accent) 0%, var(--accent-2) 55%, var(--accent-3) 100%);
+	border: 1px solid rgba(4, 20, 20, 0.7);
+	border-radius: 0;
+	box-shadow: 0 0 10px rgba(18, 213, 195, 0.45);
+}
+
+html::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(180deg, #45f4c2 0%, #24ddd0 55%, #16d6da 100%);
+}
+
+html::-webkit-scrollbar-button {
+	display: none;
+	width: 0;
+	height: 0;
+}
+
 .font-outfit {
 	font-family: var(--font-outfit), "Segoe UI", sans-serif;
 }
@@ -1748,14 +1781,14 @@ img {
 }
 
 .ops-redesign-main {
-	--ops-bg-light: #072020;
-	--ops-bg-light: color-mix(in srgb, var(--bg) 80%, #ffffff 20%);
+	--ops-bg-light: #062020;
+	--ops-bg-light: color-mix(in srgb, var(--bg) 90%, #ffffff 10%);
 	background:
 		linear-gradient(
 			180deg,
 			var(--bg) 0%,
-			rgba(6, 20, 20, 0.98) 38%,
-			rgba(7, 25, 25, 0.95) 74%,
+			rgba(6, 19, 19, 0.98) 40%,
+			rgba(7, 23, 23, 0.95) 78%,
 			var(--ops-bg-light) 100%
 		);
 	background-repeat: no-repeat;
