@@ -502,23 +502,15 @@ img {
 }
 
 .home-insight-panel {
-	border-radius: 28px;
-	border: 1px solid rgba(88, 126, 124, 0.55);
-	background: linear-gradient(120deg, rgba(16, 29, 32, 0.92), rgba(15, 27, 29, 0.9));
-	padding: 26px;
+	padding: 0;
 	display: grid;
 	gap: 18px;
-	transition: transform 0.3s ease, border-color 0.3s ease;
-}
-
-.home-insight-panel:hover {
-	transform: translateY(-6px);
-	border-color: rgba(118, 255, 236, 0.5);
 }
 
 .home-insight-head {
 	display: grid;
 	gap: 10px;
+	max-width: 980px;
 }
 
 .home-insight-head h2 {
@@ -535,6 +527,8 @@ img {
 	color: rgba(255, 255, 255, 0.82);
 	font-size: clamp(1rem, 0.94rem + 0.16vw, 1.12rem);
 	line-height: 1.45;
+	text-align: justify;
+	text-justify: inter-word;
 }
 
 .home-insight-grid {
@@ -552,6 +546,35 @@ img {
 	gap: 8px;
 	align-content: start;
 	transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.home-insight-card-head {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	gap: 10px;
+}
+
+.home-insight-icon {
+	width: 38px;
+	height: 38px;
+	border-radius: 12px;
+	border: 1px solid rgba(117, 173, 169, 0.45);
+	background: rgba(16, 39, 41, 0.58);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+
+.home-insight-icon svg {
+	width: 22px;
+	height: 22px;
+	fill: none;
+	stroke: #9bfff3;
+	stroke-width: 2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
 }
 
 .home-insight-card:hover {
@@ -573,6 +596,8 @@ img {
 	font-size: clamp(0.92rem, 0.89rem + 0.12vw, 1rem);
 	line-height: 1.45;
 	color: rgba(255, 255, 255, 0.8);
+	text-align: justify;
+	text-justify: inter-word;
 }
 
 .about {
