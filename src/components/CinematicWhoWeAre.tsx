@@ -136,7 +136,8 @@ export default function CinematicWhoWeAre() {
           justify-content: center;
           overflow: hidden;
           box-sizing: border-box;
-          padding: clamp(56px, 11vh, 112px) clamp(28px, 6vw, 88px);
+          /* keep horizontal padding for side spacing, remove vertical padding so scenes center on viewport */
+          padding: 0 clamp(28px, 6vw, 88px);
         }
 
         .cinematic-who-glow {
@@ -201,7 +202,7 @@ export default function CinematicWhoWeAre() {
 
         @media (max-width: 980px) {
           .cinematic-who-sticky {
-            padding: clamp(44px, 9vh, 84px) clamp(20px, 5vw, 40px);
+            padding: 0 clamp(20px, 5vw, 40px);
           }
 
           .cinematic-who-content {
@@ -211,7 +212,7 @@ export default function CinematicWhoWeAre() {
 
         @media (max-width: 640px) {
           .cinematic-who-sticky {
-            padding: clamp(34px, 8vh, 68px) 14px;
+            padding: 0 14px;
           }
 
           .cinematic-who-title {
