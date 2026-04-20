@@ -19,11 +19,28 @@ function ServiceCategoryIcon({ type }: { type: ServiceIconType }) {
   switch (type) {
     case "ai":
       return (
-        <img
-          src="/theme/AI.png"
-          alt="AI"
-          style={{ width: 48, height: 48, objectFit: "contain" }}
-        />
+        <>
+          <img
+            src="/theme/ai.png"
+            alt="AI"
+            className="services-icon-img"
+            onError={(e: any) => {
+              e.currentTarget.style.display = "none";
+              const sib = e.currentTarget.nextElementSibling as HTMLElement | null;
+              if (sib) sib.style.display = "inline-block";
+            }}
+          />
+          <svg
+            className="services-icon-fallback"
+            style={{ display: "none", width: 48, height: 48 }}
+            viewBox="0 0 64 64"
+            role="img"
+            aria-hidden="true"
+          >
+            <rect x="6" y="6" width="52" height="52" rx="10" fill="#102729" />
+            <text x="32" y="38" textAnchor="middle" fontFamily="Gilroy, var(--font-body), sans-serif" fontWeight="700" fontSize="18" fill="#9bfff3">AI</text>
+          </svg>
+        </>
       );
     case "web":
       return (
@@ -37,19 +54,53 @@ function ServiceCategoryIcon({ type }: { type: ServiceIconType }) {
       );
     case "fullstack":
       return (
-        <img
-          src="/theme/fullstack.png"
-          alt="Full Stack"
-          style={{ width: 48, height: 48, objectFit: "contain" }}
-        />
+        <>
+          <img
+            src="/theme/fullstack.png"
+            alt="Full Stack"
+            className="services-icon-img"
+            onError={(e: any) => {
+              e.currentTarget.style.display = "none";
+              const sib = e.currentTarget.nextElementSibling as HTMLElement | null;
+              if (sib) sib.style.display = "inline-block";
+            }}
+          />
+          <svg
+            className="services-icon-fallback"
+            style={{ display: "none", width: 48, height: 48 }}
+            viewBox="0 0 64 64"
+            role="img"
+            aria-hidden="true"
+          >
+            <rect x="6" y="6" width="52" height="52" rx="10" fill="#102729" />
+            <text x="32" y="38" textAnchor="middle" fontFamily="Gilroy, var(--font-body), sans-serif" fontWeight="700" fontSize="12" fill="#9bfff3">Full\nStack</text>
+          </svg>
+        </>
       );
     case "uiux":
       return (
-        <img
-          src="/theme/UIUX.png"
-          alt="UI/UX"
-          style={{ width: 48, height: 48, objectFit: "contain" }}
-        />
+        <>
+          <img
+            src="/theme/uiux.png"
+            alt="UI/UX"
+            className="services-icon-img"
+            onError={(e: any) => {
+              e.currentTarget.style.display = "none";
+              const sib = e.currentTarget.nextElementSibling as HTMLElement | null;
+              if (sib) sib.style.display = "inline-block";
+            }}
+          />
+          <svg
+            className="services-icon-fallback"
+            style={{ display: "none", width: 48, height: 48 }}
+            viewBox="0 0 64 64"
+            role="img"
+            aria-hidden="true"
+          >
+            <rect x="6" y="6" width="52" height="52" rx="10" fill="#102729" />
+            <text x="32" y="34" textAnchor="middle" fontFamily="Gilroy, var(--font-body), sans-serif" fontWeight="700" fontSize="12" fill="#9bfff3">UI/UX</text>
+          </svg>
+        </>
       );
     case "analytics":
       return (

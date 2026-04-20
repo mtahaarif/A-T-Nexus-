@@ -1156,6 +1156,21 @@ img {
 	stroke-linejoin: round;
 }
 
+/* ensure PNG icons size correctly and provide fallback SVG visibility */
+.services-card-icon img,
+.services-card-icon .services-icon-img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    display: inline-block;
+}
+
+.services-icon-fallback {
+    display: none;
+    width: 48px;
+    height: 48px;
+}
+
 .services-catalog-card h2 {
 	margin: 0;
 	font-family: var(--font-head);
