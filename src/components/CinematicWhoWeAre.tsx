@@ -38,6 +38,9 @@ export default function CinematicWhoWeAre() {
     ["blur(0px)", "blur(0px)", "blur(5px)"]
   );
 
+  // move first scene down 100px
+  const block1YOffset = useTransform(block1Y, (v) => v + 100);
+
   const block2Opacity = useTransform(
     progress,
     [0.24, 0.34, 0.58, 0.68],
@@ -51,6 +54,9 @@ export default function CinematicWhoWeAre() {
     ["blur(6px)", "blur(0px)", "blur(0px)", "blur(6px)"]
   );
 
+  // move second scene up 100px
+  const block2YOffset = useTransform(block2Y, (v) => v - 100);
+
   const block3Opacity = useTransform(progress, [0.56, 0.66, 1], [0, 1, 1]);
   const block3Y = useTransform(progress, [0.56, 0.72, 1], [22, 0, -22]);
   const block3Scale = useTransform(progress, [0.56, 0.72, 1], [0.99, 1, 1]);
@@ -59,8 +65,8 @@ export default function CinematicWhoWeAre() {
     [0.56, 0.66, 1],
     ["blur(6px)", "blur(0px)", "blur(0px)"]
   );
-  // offset third scene vertically by -200px (move up)
-  const block3YOffset = useTransform(block3Y, (v) => v - 200);
+  // offset third scene vertically by -200px (previous) and additional -100px requested now -> total -300px
+  const block3YOffset = useTransform(block3Y, (v) => v - 300);
 
   return (
     <section
@@ -78,8 +84,8 @@ export default function CinematicWhoWeAre() {
 
         <div className="cinematic-who-stage" aria-live="polite">
           <motion.article
-            style={{ opacity: block1Opacity, y: block1Y, scale: block1Scale, filter: block1Filter }}
-            className="cinematic-who-scene"
+            style={{ opacity: block1Opacity, y: block1YOffset, scale: block1Scale, filter: block1Filter }}
+            className="cinematic-who-scene first-scene"
           >
             <div className="cinematic-who-content">
               <h2 className="cinematic-who-title font-outfit">
@@ -92,8 +98,8 @@ export default function CinematicWhoWeAre() {
           </motion.article>
 
           <motion.article
-            style={{ opacity: block2Opacity, y: block2Y, scale: block2Scale, filter: block2Filter }}
-            className="cinematic-who-scene"
+            style={{ opacity: block2Opacity, y: block2YOffset, scale: block2Scale, filter: block2Filter }}
+            className="cinematic-who-scene second-scene"
           >
             <div className="cinematic-who-content">
               <h2 className="cinematic-who-title font-outfit">
