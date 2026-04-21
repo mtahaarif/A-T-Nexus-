@@ -217,7 +217,7 @@ export function LeadershipSection() {
         <div className="leadership-profile reveal reveal-right">
           <div className="profile-photo">
             <img
-              src="/theme/leadership-photo.jpg"
+              src="https://atnexus.io/wp-content/uploads/2025/10/Group-1948755045.png"
               alt="Waleed Arif"
               width={560}
               height={560}

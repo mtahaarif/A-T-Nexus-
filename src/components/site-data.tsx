@@ -16,17 +16,17 @@ export const serviceMenuLinks = [
 
 export const missionCards: MissionCard[] = [
   {
-    icon: "/theme/mission-global-leadership.png",
+    icon: "https://atnexus.io/wp-content/uploads/2025/10/Mask-group.png",
     title: "Global Leadership",
     description: "Driving SME digital transformation worldwide.",
   },
   {
-    icon: "/theme/mission-business-growth.png",
+    icon: "https://atnexus.io/wp-content/uploads/2025/10/Mask-group-1.png",
     title: "Business Growth",
     description: "Enabling SMEs to thrive in a connected, tech-driven era.",
   },
   {
-    icon: "/theme/mission-smart-solutions.png",
+    icon: "https://atnexus.io/wp-content/uploads/2025/10/Mask-group-2.png",
     title: "Smart Solutions",
     description: "Delivering scalable, sustainable, and future-ready digital adoption.",
   },
@@ -42,22 +42,22 @@ export const whyItems = [
 
 export const valueCards: MissionCard[] = [
   {
-    icon: "/theme/value-integrity-trust.png",
+    icon: "https://atnexus.io/wp-content/uploads/2025/10/Mask-group-5.png",
     title: "Integrity & Trust",
     description: "Building lasting partnerships through honesty and transparency.",
   },
   {
-    icon: "/theme/value-innovation-first.png",
+    icon: "https://atnexus.io/wp-content/uploads/2025/10/Group-1.png",
     title: "Innovation First",
     description: "Driving progress with creativity and future-ready solutions.",
   },
   {
-    icon: "/theme/value-customer-centricity.png",
+    icon: "https://atnexus.io/wp-content/uploads/2025/10/Group-1948754902.png",
     title: "Customer Centricity",
     description: "Putting clients at the heart of everything we do.",
   },
   {
-    icon: "/theme/value-excellence-delivery.png",
+    icon: "https://atnexus.io/wp-content/uploads/2025/10/recommendation.png",
     title: "Excellence In Delivery",
     description: "Ensuring measurable results with quality execution.",
   },
