@@ -157,7 +157,7 @@ export function MissionSection() {
         <div className="mission-stack reveal reveal-left">
           {missionCards.map((item) => (
             <article key={item.title} className="icon-card">
-              <img src={item.icon} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+              <img src={item.icon} alt="" aria-hidden="true" width={52} height={52} loading="lazy" decoding="async" />
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </article>
@@ -200,7 +200,7 @@ export function ValuesSection() {
       <div className="container values-grid reveal reveal-up">
         {valueCards.map((item) => (
           <article key={item.title} className="value-card">
-            <img src={item.icon} alt="" aria-hidden="true" loading="lazy" decoding="async" />
+            <img src={item.icon} alt="" aria-hidden="true" width={52} height={52} loading="lazy" decoding="async" />
             <h3>{item.title}</h3>
             <p>{item.description}</p>
           </article>
@@ -217,8 +217,10 @@ export function LeadershipSection() {
         <div className="leadership-profile reveal reveal-right">
           <div className="profile-photo">
             <img
-              src="https://atnexus.io/wp-content/uploads/2025/10/Group-1948755045.png"
+              src="/theme/leadership-photo.jpg"
               alt="Waleed Arif"
+              width={560}
+              height={560}
               loading="lazy"
               decoding="async"
             />
@@ -268,7 +270,7 @@ export function AffiliationsSection() {
           <div className="marquee-track">
             {marqueeLogos.map((logo, index) => (
               <figure className="logo-chip" key={`${logo}-${index}`}>
-                <img src={logo} alt="Affiliation logo" loading="lazy" decoding="async" />
+                <img src={logo} alt="Affiliation logo" width={240} height={160} loading="lazy" decoding="async" />
               </figure>
             ))}
           </div>

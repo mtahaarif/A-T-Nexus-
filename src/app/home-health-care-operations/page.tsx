@@ -2,6 +2,7 @@
 
 import { Check, X } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import BackendCoverageCards, { type BackendCoverageItem } from "@/components/BackendCoverageCards";
 import CallToAction from "@/components/CallToAction";
 import ComparisonGrid from "@/components/ComparisonGrid";
@@ -201,13 +202,14 @@ export default function HomeHealthCareOperationsPage() {
             </div>
 
             <div className="ops-hero-illustration" aria-hidden="true">
-              <img
-                src="/theme/home_care_operations.png?v=20260421"
+              <Image
+                src="/theme/home_care_operations.png"
                 alt="Illustration for home health care operations"
                 className="ops-hero-illustration-img"
-                loading="eager"
-                decoding="async"
-                fetchPriority="high"
+                width={1080}
+                height={1080}
+                priority
+                sizes="(max-width: 980px) 92vw, 540px"
               />
             </div>
           </div>

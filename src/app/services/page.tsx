@@ -1,6 +1,7 @@
 "use client";
 
 import ContactSection from "@/components/ContactSection";
+import Image from "next/image";
 import SiteFooter from "@/components/SiteFooter";
 import SiteHeader from "@/components/SiteHeader";
 import { useRevealOnScroll } from "@/components/useRevealOnScroll";
@@ -25,13 +26,15 @@ function ServiceCategoryIcon({ type }: { type: ServiceIconType }) {
   const imageSrc = iconImages[type];
   if (imageSrc) {
     return (
-      <img
+      <Image
         src={imageSrc}
         alt=""
         aria-hidden="true"
         className="services-card-icon-img"
+        width={48}
+        height={48}
         loading="lazy"
-        decoding="async"
+        sizes="48px"
       />
     );
   }

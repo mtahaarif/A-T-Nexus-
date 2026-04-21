@@ -72,8 +72,10 @@ export default function ContactSection() {
             <article className="contact-item">
               <span className="contact-icon" aria-hidden="true">
                 <img
-                  src="https://atnexus.io/wp-content/uploads/2025/10/Frame-48.png"
+                  src="/theme/contact-email-icon.png"
                   alt=""
+                  width={30}
+                  height={30}
                   loading="lazy"
                   decoding="async"
                 />
@@ -87,8 +89,10 @@ export default function ContactSection() {
             <article className="contact-item">
               <span className="contact-icon" aria-hidden="true">
                 <img
-                  src="https://atnexus.io/wp-content/uploads/2025/10/Group-1948755046.png"
+                  src="/theme/contact-location-icon.png"
                   alt=""
+                  width={30}
+                  height={30}
                   loading="lazy"
                   decoding="async"
                 />
@@ -102,8 +106,10 @@ export default function ContactSection() {
             <article className="contact-item">
               <span className="contact-icon" aria-hidden="true">
                 <img
-                  src="https://atnexus.io/wp-content/uploads/2025/10/Frame-48-1.png"
+                  src="/theme/contact-phone-icon.png"
                   alt=""
+                  width={30}
+                  height={30}
                   loading="lazy"
                   decoding="async"
                 />
