@@ -64,9 +64,9 @@ export const valueCards: MissionCard[] = [
 ];
 
 export const affiliations = [
-  "/theme/affiliation-1.png",
-  "/theme/affiliation-2.png",
-  "/theme/affiliation-3.png",
+  "https://atnexus.io/wp-content/uploads/2025/10/Islamabad-Chamber-logo.jpg",
+  "https://atnexus.io/wp-content/uploads/2025/10/PSEB-Logo-1.png",
+  "https://atnexus.io/wp-content/uploads/2025/10/Ministry-of-IT-Logo-e1760118705413.png",
 ];
 
 export const helpLinks = ["Help Center", "Trust and safety", "Privacy settings"];
