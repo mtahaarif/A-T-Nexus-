@@ -7,11 +7,20 @@ export function useRevealOnScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     const revealNodes = Array.from(
       document.querySelectorAll<HTMLElement>(".reveal")
     );
 
     if (!revealNodes.length) {
+      return;
+    }
+
+    if (prefersReducedMotion) {
+      revealNodes.forEach((node) => node.classList.add("in-view"));
       return;
     }
 

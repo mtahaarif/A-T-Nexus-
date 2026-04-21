@@ -83,7 +83,7 @@ export default function SiteFooter() {
 
           <section className="footer-col brand-col">
             <Link href="/" className="footer-brand" aria-label="A&T Nexus home">
-              <img src="/theme/logo-no-text.png" alt="A&T Nexus" loading="lazy" decoding="async" />
+              <img src="/theme/logo-no-text.png" alt="A&T Nexus" width={58} height={58} loading="lazy" decoding="async" />
               <span>A&amp;T Nexus</span>
             </Link>
             <p>

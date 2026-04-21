@@ -3,8 +3,6 @@ import CinematicWhoWeAre from "@/components/CinematicWhoWeAre";
 import {
   affiliations,
   missionCards,
-  ServiceIcon,
-  services,
   valueCards,
   whyItems,
 } from "@/components/site-data";
@@ -159,7 +157,7 @@ export function MissionSection() {
         <div className="mission-stack reveal reveal-left">
           {missionCards.map((item) => (
             <article key={item.title} className="icon-card">
-              <img src={item.icon} alt="" aria-hidden="true" />
+              <img src={item.icon} alt="" aria-hidden="true" loading="lazy" decoding="async" />
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </article>
@@ -202,34 +200,9 @@ export function ValuesSection() {
       <div className="container values-grid reveal reveal-up">
         {valueCards.map((item) => (
           <article key={item.title} className="value-card">
-            <img src={item.icon} alt="" aria-hidden="true" />
+            <img src={item.icon} alt="" aria-hidden="true" loading="lazy" decoding="async" />
             <h3>{item.title}</h3>
             <p>{item.description}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-export function ServicesSection() {
-  return (
-    <section id="Services_sec" className="section-pad services-shell">
-      <div className="container section-head light-head reveal reveal-up">
-        <h2>Our Services</h2>
-        <p>
-          We provide smart, scalable solutions that help SMEs digitize
-          operations, improve efficiency, and achieve sustainable growth.
-        </p>
-      </div>
-
-      <div className="container services-grid reveal reveal-up">
-        {services.map((service) => (
-          <article key={service.title} className="service-tile">
-            <div className="service-tile-icon" aria-hidden="true">
-              <ServiceIcon type={service.icon} />
-            </div>
-            <h3>{service.title}</h3>
           </article>
         ))}
       </div>

@@ -59,7 +59,7 @@ export default function SiteHeader() {
       <header className="site-header">
         <div className="container nav-shell">
           <Link href="/" className="brand" aria-label="A&T Nexus home">
-            <img src="/theme/logo-no-text.png" alt="A&T Nexus" />
+            <img src="/theme/logo-no-text.png" alt="A&T Nexus" width={54} height={54} decoding="async" />
             <span>A&amp;T Nexus</span>
           </Link>
 
@@ -162,7 +162,7 @@ export default function SiteHeader() {
           </button>
 
           <Link href="/" className="brand mobile-brand">
-            <img src="/theme/logo-no-text.png" alt="A&T Nexus" />
+            <img src="/theme/logo-no-text.png" alt="A&T Nexus" width={44} height={44} loading="lazy" decoding="async" />
             <span>A&amp;T Nexus</span>
           </Link>
 

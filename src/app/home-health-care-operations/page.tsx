@@ -202,9 +202,12 @@ export default function HomeHealthCareOperationsPage() {
 
             <div className="ops-hero-illustration" aria-hidden="true">
               <img
-                src="/theme/home_care_operations.png"
-                alt=""
+                src="/theme/home_care_operations.png?v=20260421"
+                alt="Illustration for home health care operations"
                 className="ops-hero-illustration-img"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
               />
             </div>
           </div>

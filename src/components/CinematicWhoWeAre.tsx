@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -13,17 +13,14 @@ const jakarta = Plus_Jakarta_Sans({
 
 export default function CinematicWhoWeAre() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const shouldReduceMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end end"],
   });
 
-  const progress = useSpring(scrollYProgress, {
-    stiffness: 900,
-    damping: 90,
-    mass: 0.18,
-  });
+  const progress = scrollYProgress;
 
   const block1Opacity = useTransform(
     progress,
@@ -74,7 +71,7 @@ export default function CinematicWhoWeAre() {
       ref={sectionRef}
       role="region"
       aria-label="Who We Are cinematic"
-      className={`${jakarta.variable} cinematic-who-shell`}
+      className={`${jakarta.variable} cinematic-who-shell${shouldReduceMotion ? " reduce-motion" : ""}`}
     >
       <div className="cinematic-who-sticky">
         <div
@@ -82,9 +79,13 @@ export default function CinematicWhoWeAre() {
           className="cinematic-who-glow"
         />
 
-        <div className="cinematic-who-stage" aria-live="polite">
+        <div className={`cinematic-who-stage${shouldReduceMotion ? " is-static" : ""}`} aria-live="polite">
           <motion.article
-            style={{ opacity: block1Opacity, y: block1YOffset, scale: block1Scale, filter: block1Filter }}
+            style={
+              shouldReduceMotion
+                ? { opacity: 1, y: 0, scale: 1, filter: "none" }
+                : { opacity: block1Opacity, y: block1YOffset, scale: block1Scale, filter: block1Filter }
+            }
             className="cinematic-who-scene first-scene"
           >
             <div className="cinematic-who-content">
@@ -98,7 +99,11 @@ export default function CinematicWhoWeAre() {
           </motion.article>
 
           <motion.article
-            style={{ opacity: block2Opacity, y: block2YOffset, scale: block2Scale, filter: block2Filter }}
+            style={
+              shouldReduceMotion
+                ? { opacity: 1, y: 0, scale: 1, filter: "none" }
+                : { opacity: block2Opacity, y: block2YOffset, scale: block2Scale, filter: block2Filter }
+            }
             className="cinematic-who-scene second-scene"
           >
             <div className="cinematic-who-content">
@@ -112,7 +117,11 @@ export default function CinematicWhoWeAre() {
           </motion.article>
 
           <motion.article
-            style={{ opacity: block3Opacity, y: block3YOffset, scale: block3Scale, filter: block3Filter }}
+            style={
+              shouldReduceMotion
+                ? { opacity: 1, y: 0, scale: 1, filter: "none" }
+                : { opacity: block3Opacity, y: block3YOffset, scale: block3Scale, filter: block3Filter }
+            }
             className="cinematic-who-scene third-scene"
           >
             <div className="cinematic-who-content">
@@ -135,6 +144,11 @@ export default function CinematicWhoWeAre() {
           isolation: isolate;
         }
 
+        .cinematic-who-shell.reduce-motion {
+          height: auto;
+          padding: 72px 0;
+        }
+
         .cinematic-who-sticky {
           position: sticky;
           /* account for the site header so the sticky area centers in the visible viewport */
@@ -147,6 +161,12 @@ export default function CinematicWhoWeAre() {
           box-sizing: border-box;
           /* keep horizontal padding for side spacing, remove vertical padding so scenes center on viewport */
           padding: 0 clamp(28px, 6vw, 88px);
+        }
+
+        .cinematic-who-shell.reduce-motion .cinematic-who-sticky {
+          position: relative;
+          top: 0;
+          height: auto;
         }
 
         .cinematic-who-glow {
@@ -170,6 +190,14 @@ export default function CinematicWhoWeAre() {
           height: 100%;
         }
 
+        .cinematic-who-stage.is-static {
+          height: auto;
+          display: grid;
+          gap: 28px;
+          align-content: start;
+          padding: 16px 0;
+        }
+
         .cinematic-who-scene {
           position: absolute;
           inset: 0;
@@ -178,6 +206,12 @@ export default function CinematicWhoWeAre() {
           justify-content: center;
           pointer-events: none;
           will-change: opacity, transform;
+        }
+
+        .cinematic-who-stage.is-static .cinematic-who-scene {
+          position: relative;
+          inset: auto;
+          pointer-events: auto;
         }
 
         .cinematic-who-content {
