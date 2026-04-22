@@ -1,12 +1,13 @@
 "use client";
 
-import { Check, X } from "lucide-react";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
 type ComparisonRow = {
-  aspect: string;
-  fullTime: string;
-  atNexus: string;
+  label: string;
+  inHouse: string;
+  dedicated: string;
+  dedicatedAccent?: boolean;
+  isSummary?: boolean;
 };
 
 const jakarta = Plus_Jakarta_Sans({
@@ -17,14 +18,40 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 const comparisonRows: ComparisonRow[] = [
-  { aspect: "Weekend on-calls", fullTime: "Extra hourly pay & benefits", atNexus: "24/7 on-call service at affordable rates" },
-  { aspect: "Annual expenses", fullTime: "$60,000 - $65,000", atNexus: "50% less expenses" },
-  { aspect: "Cost", fullTime: "High fixed cost", atNexus: "Flexible & scalable" },
-  { aspect: "Hiring time", fullTime: "Weeks/months", atNexus: "Immediate start" },
-  { aspect: "Skill coverage", fullTime: "Limited", atNexus: "Multi-skill team" },
-  { aspect: "Training burden", fullTime: "On you", atNexus: "Already trained" },
-  { aspect: "Scalability", fullTime: "Slow", atNexus: "Instant" },
-  { aspect: "Risk", fullTime: "High turnover", atNexus: "Stable operations" },
+  {
+    label: "Hourly Loaded Cost",
+    inHouse: "$28 - $35",
+    dedicated: "Starts at $17",
+    dedicatedAccent: true,
+  },
+  {
+    label: "Health/Benefit Burden",
+    inHouse: "$5,000+ /yr",
+    dedicated: "$0 (Included)",
+  },
+  {
+    label: "Office/Tech Overhead",
+    inHouse: "$3,000+ /yr",
+    dedicated: "$0 (Included)",
+  },
+  {
+    label: "Onboarding Time",
+    inHouse: "4-6 Weeks",
+    dedicated: "Instant Execution",
+    dedicatedAccent: true,
+  },
+  {
+    label: "Weekend On-Calls",
+    inHouse: "Extra hourly pay and benefits",
+    dedicated: "24/7 on-call service at a much more affordable rate",
+  },
+  {
+    label: "Annual Impact",
+    inHouse: "$65k - $75k",
+    dedicated: "Over 50%",
+    dedicatedAccent: true,
+    isSummary: true,
+  },
 ];
 
 type ComparisonGridProps = {
@@ -51,46 +78,36 @@ export default function ComparisonGrid({
           <h2 className="font-outfit">{title}</h2>
         </div>
 
-        <div
-          className="comparison-grid-shell font-jakarta"
-          role="table"
-          aria-label="Simple dedicated ops comparison"
-        >
-          <div className="comparison-grid-hero-column" aria-hidden="true" />
+        <div className="comparison-grid-shell font-jakarta">
+          <article className="comparison-grid-card comparison-grid-card-inhouse">
+            <h3 className="comparison-grid-card-title">In-House Office Admin</h3>
 
-          <div className="comparison-grid-header-row" role="row">
-            <p className="comparison-grid-col comparison-grid-col-aspect" role="columnheader">
-              Aspect
-            </p>
-            <p className="comparison-grid-col comparison-grid-col-fulltime" role="columnheader">
-              Full-Time Staff (onsite)
-            </p>
-            <p className="comparison-grid-col comparison-grid-col-nexus" role="columnheader">
-              A&amp;T Nexus (remote)
-            </p>
-          </div>
-
-          {comparisonRows.map((row) => (
-            <div className="comparison-grid-row" role="row" key={row.aspect}>
-              <p className="comparison-grid-col comparison-grid-col-aspect" data-label="Aspect">
-                {row.aspect}
-              </p>
-
-              <p className="comparison-grid-col comparison-grid-col-fulltime" data-label="Full-Time Staff (onsite)">
-                <X className="comparison-grid-icon comparison-grid-icon-x" size={15} strokeWidth={2.2} />
-                <span>{row.fullTime}</span>
-              </p>
-
-              <p className="comparison-grid-col comparison-grid-col-nexus" data-label="A&amp;T Nexus (remote)">
-                <Check
-                  className="comparison-grid-icon comparison-grid-icon-check"
-                  size={16}
-                  strokeWidth={2.4}
-                />
-                <span>{row.atNexus}</span>
-              </p>
+            <div className="comparison-grid-card-body">
+              {comparisonRows.map((row) => (
+                <div className={`comparison-grid-line${row.isSummary ? " is-summary" : ""}`} key={row.label}>
+                  <p className="comparison-grid-line-label">{row.label}</p>
+                  <p className="comparison-grid-line-value">{row.inHouse}</p>
+                </div>
+              ))}
             </div>
-          ))}
+          </article>
+
+          <article className="comparison-grid-card comparison-grid-card-dedicated">
+            <h3 className="comparison-grid-card-title">A&amp;T Nexus Dedicated Staff</h3>
+
+            <div className="comparison-grid-card-body">
+              {comparisonRows.map((row) => (
+                <div className={`comparison-grid-line${row.isSummary ? " is-summary" : ""}`} key={row.label}>
+                  <p className="comparison-grid-line-label">{row.label}</p>
+                  <p
+                    className={`comparison-grid-line-value${row.dedicatedAccent ? " is-accent" : ""}`}
+                  >
+                    {row.dedicated}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </article>
         </div>
       </div>
     </section>
