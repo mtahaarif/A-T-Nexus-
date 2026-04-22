@@ -17,6 +17,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 const comparisonRows: ComparisonRow[] = [
+  { aspect: "Weekend on-calls", fullTime: "Extra hourly pay & benefits", atNexus: "24/7 on-call service at affordable rates" },
   { aspect: "Annual expenses", fullTime: "$60,000 - $65,000", atNexus: "50% less expenses" },
   { aspect: "Cost", fullTime: "High fixed cost", atNexus: "Flexible & scalable" },
   { aspect: "Hiring time", fullTime: "Weeks/months", atNexus: "Immediate start" },

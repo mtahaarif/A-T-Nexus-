@@ -20,53 +20,53 @@ export default function CinematicWhoWeAre() {
   });
 
   const progress = useSpring(scrollYProgress, {
-    stiffness: 900,
-    damping: 90,
-    mass: 0.18,
+    stiffness: 400,
+    damping: 35,
+    mass: 0.12,
   });
 
   const block1Opacity = useTransform(
     progress,
-    [0, 0.18, 0.3],
+    [0, 0.12, 0.24],
     [1, 1, 0]
   );
-  const block1Y = useTransform(progress, [0, 0.18, 0.3], [22, 0, -22]);
-  const block1Scale = useTransform(progress, [0, 0.18, 0.3], [1, 1, 0.988]);
+  const block1Y = useTransform(progress, [0, 0.12, 0.24], [14, 0, -14]);
+  const block1Scale = useTransform(progress, [0, 0.12, 0.24], [1, 1, 0.992]);
   const block1Filter = useTransform(
     progress,
-    [0, 0.22, 0.3],
-    ["blur(0px)", "blur(0px)", "blur(5px)"]
+    [0, 0.14, 0.24],
+    ["blur(0px)", "blur(0px)", "blur(3px)"]
   );
 
-  // move first scene down 100px
-  const block1YOffset = useTransform(block1Y, (v) => v + 100);
+  // move first scene down slightly for a faster feel
+  const block1YOffset = useTransform(block1Y, (v) => v + 60);
 
   const block2Opacity = useTransform(
     progress,
-    [0.24, 0.34, 0.58, 0.68],
+    [0.2, 0.3, 0.5, 0.6],
     [0, 1, 1, 0]
   );
-  const block2Y = useTransform(progress, [0.24, 0.46, 0.68], [22, 0, -22]);
-  const block2Scale = useTransform(progress, [0.24, 0.46, 0.68], [0.988, 1, 0.988]);
+  const block2Y = useTransform(progress, [0.2, 0.44, 0.66], [14, 0, -14]);
+  const block2Scale = useTransform(progress, [0.2, 0.44, 0.66], [0.99, 1, 0.99]);
   const block2Filter = useTransform(
     progress,
-    [0.24, 0.34, 0.58, 0.68],
-    ["blur(6px)", "blur(0px)", "blur(0px)", "blur(6px)"]
+    [0.2, 0.3, 0.5, 0.6],
+    ["blur(4px)", "blur(0px)", "blur(0px)", "blur(4px)"]
   );
 
-  // move second scene up 100px
-  const block2YOffset = useTransform(block2Y, (v) => v - 100);
+  // move second scene up slightly for smoother motion
+  const block2YOffset = useTransform(block2Y, (v) => v - 60);
 
-  const block3Opacity = useTransform(progress, [0.56, 0.66, 1], [0, 1, 1]);
-  const block3Y = useTransform(progress, [0.56, 0.72, 1], [22, 0, -22]);
-  const block3Scale = useTransform(progress, [0.56, 0.72, 1], [0.99, 1, 1]);
+  const block3Opacity = useTransform(progress, [0.5, 0.62, 1], [0, 1, 1]);
+  const block3Y = useTransform(progress, [0.5, 0.62, 1], [14, 0, -14]);
+  const block3Scale = useTransform(progress, [0.5, 0.62, 1], [0.99, 1, 1]);
   const block3Filter = useTransform(
     progress,
-    [0.56, 0.66, 1],
-    ["blur(6px)", "blur(0px)", "blur(0px)"]
+    [0.5, 0.62, 1],
+    ["blur(4px)", "blur(0px)", "blur(0px)"]
   );
-  // offset third scene vertically by -200px (previous) and additional -100px requested now -> total -300px
-  const block3YOffset = useTransform(block3Y, (v) => v - 300);
+  // offset third scene vertically by a shorter distance for smoother exit
+  const block3YOffset = useTransform(block3Y, (v) => v - 180);
 
   return (
     <section

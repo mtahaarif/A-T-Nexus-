@@ -2108,11 +2108,20 @@ img {
 .comparison-grid-col-fulltime {
 	color: rgba(107, 114, 128, 0.98);
 	font-size: clamp(0.9rem, 0.86rem + 0.14vw, 0.98rem);
+	background: rgba(255, 255, 255, 0.02);
+	border-radius: 12px;
+	padding-left: 14px;
+	padding-right: 14px;
 }
 
 .comparison-grid-col-nexus {
 	color: rgba(243, 247, 250, 0.98);
 	font-weight: 500;
+	background: rgba(20, 241, 217, 0.03);
+	border: 1px solid rgba(20, 241, 217, 0.12);
+	border-radius: 12px;
+	padding-left: 14px;
+	padding-right: 14px;
 }
 
 .comparison-grid-icon {
@@ -2460,16 +2469,16 @@ img {
 
 .reveal {
 	opacity: 0;
-	transform: translateY(24px);
-	transition: opacity 0.65s ease, transform 0.65s ease;
+	transform: translateY(12px);
+	transition: opacity 0.36s ease, transform 0.36s ease;
 }
 
 .reveal-left {
-	transform: translateX(-24px);
+	transform: translateX(-12px);
 }
 
 .reveal-right {
-	transform: translateX(24px);
+	transform: translateX(12px);
 }
 
 .reveal.in-view {
