@@ -18,7 +18,7 @@ export default function HomePage() {
       <main>
         <HeroSection />
         <HomeSplitSection />
-        <AffiliationsSection />
+        {/* <AffiliationsSection /> */}
       </main>
       <SiteFooter />
     </>

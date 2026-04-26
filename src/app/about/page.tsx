@@ -22,7 +22,7 @@ export default function AboutPage() {
         <MissionSection />
         <WhySection />
         <ValuesSection />
-        <LeadershipSection />
+        {/* <LeadershipSection /> */}
       </main>
       <SiteFooter />
     </>
