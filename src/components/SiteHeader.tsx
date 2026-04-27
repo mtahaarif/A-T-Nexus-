@@ -108,22 +108,34 @@ export default function SiteHeader() {
               </button>
 
               <div className="nav-dropdown-menu" role="menu" aria-label="Services menu">
-                {serviceLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="nav-dropdown-item"
-                    role="menuitem"
-                    onClick={() => setIsServiceOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
+                {serviceLinks.map((item, index) => (
+                  index === 0 ? (
+                    <span
+                      key={item.href}
+                      className="nav-dropdown-item disabled"
+                      role="menuitem"
+                      aria-disabled="true"
+                      title="IT Services is not available"
+                    >
+                      {item.label}
+                    </span>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="nav-dropdown-item"
+                      role="menuitem"
+                      onClick={() => setIsServiceOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  )
                 ))}
               </div>
             </div>
           </nav>
 
-          <Link href="/services#contact" className="btn btn-primary desktop-cta">
+          <Link href="/contact" className="btn btn-primary desktop-cta">
             Contact Us
           </Link>
 
@@ -174,20 +186,32 @@ export default function SiteHeader() {
             ))}
 
             <p className="mobile-nav-group-title">Services</p>
-            {serviceLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="mobile-sub-link"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
+            {serviceLinks.map((item, index) => (
+              index === 0 ? (
+                <span
+                  key={item.href}
+                  className="mobile-sub-link disabled"
+                  role="menuitem"
+                  aria-disabled="true"
+                  title="IT Services is not available"
+                >
+                  {item.label}
+                </span>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="mobile-sub-link"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
           </nav>
 
           <Link
-            href="/services#contact"
+            href="/contact"
             className="btn btn-primary mobile-cta"
             onClick={() => setIsMenuOpen(false)}
           >

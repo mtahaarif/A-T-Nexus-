@@ -242,7 +242,6 @@ export default function ServicesPage() {
             ))}
           </div>
         </section>
-        <ContactSection />
       </main>
       <SiteFooter />
     </>
