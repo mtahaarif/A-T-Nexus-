@@ -85,7 +85,7 @@ export default function SiteFooter() {
             </p>
 
             <div className="socials" aria-label="Social links">
-              <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/company/atnexus-io/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 512 512" role="img" aria-hidden="true">
                   <path d="M416 32H96a64 64 0 00-64 64v320a64 64 0 0064 64h320a64 64 0 0064-64V96a64 64 0 00-64-64zM135.68 416H68.69V202.26h67.29zm-33.64-213.84h-.46c-22.4 0-36.88-15.46-36.88-34.75 0-19.74 14.88-34.75 37.77-34.75s36.88 15.46 37.77 34.75c0 19.29-14.88 34.75-37.77 34.75zM416 416h-67V312c0-26.14-9.34-43.94-32.76-43.94-17.84 0-28.45 12-33.12 23.6-1.71 4.14-2.13 9.94-2.13 15.73V416h-67V202.26h67v29.39h.93c9.23-13.98 25.76-34.75 62.86-34.75 45.81 0 80.25 29.94 80.25 94.4z" />
                 </svg>
@@ -98,32 +98,12 @@ export default function SiteFooter() {
             </div>
           </section>
 
-          <section className="footer-col">
-            <h3>Contact Information</h3>
-            <div className="contact-info">
-              <div className="contact-item">
-                <h4>Email Address</h4>
-                <a href="mailto:info@atnexus.io">info@atnexus.io</a>
-              </div>
-              <div className="contact-item">
-                <h4>Location</h4>
-                <p>Chicago, Illinois</p>
-              </div>
-              <div className="contact-item">
-                <h4>Phone Numbers</h4>
-                <p>
-                  <a href="tel:+17089420102">Call: +1 (708) 942-0102</a>
-                </p>
-                <p>
-                  <a href="https://wa.me/14693673215" target="_blank" rel="noopener noreferrer">
-                    Whatsapp: +1 (469) 367-3215
-                  </a>
-                </p>
-              </div>
-            </div>
-          </section>
+          <section className="footer-col"></section>
 
-          <section className="footer-col">
+          
+          <section className="footer-col ">  </section>
+
+          <section className="footer-col ">
             <h3>Subscribe Our Newsletter</h3>
             <p>Subscribe for exclusive deals and updates!</p>
             <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
