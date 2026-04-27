@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import WhatsAppButton from "@/components/WhatsAppButton"; // 1. Added Import
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -29,7 +30,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={outfit.variable}>
-      <body className="atnexus-body">{children}</body>
+      <body className="atnexus-body">
+        {children}
+        <WhatsAppButton /> {/* 2. Added Component */}
+      </body>
     </html>
   );
 }
