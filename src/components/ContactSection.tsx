@@ -17,28 +17,39 @@ export default function ContactSection() {
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const payload = {
-      name: String(formData.get("name") ?? "").trim(),
-      email: String(formData.get("email") ?? "").trim(),
-      service: String(formData.get("service") ?? "").trim(),
-      message: String(formData.get("message") ?? "").trim(),
-      source: "services-contact-form",
-    };
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const service = String(formData.get("service") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+    const source = "contact-page";
 
     try {
-      const response = await fetch("/api/contact", {
+      const payload = new URLSearchParams({
+        name,
+        email,
+        service: service || "Not specified",
+        message,
+        _subject: `[A&T Nexus Contact] ${name}`,
+        _captcha: "false",
+        _template: "table",
+        _replyto: email,
+        _source: source,
+      });
+
+      const response = await fetch("https://formsubmit.co/ajax/info@atnexus.io", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
+          Accept: "application/json",
         },
-        body: JSON.stringify(payload),
+        body: payload.toString(),
       });
 
       const result = (await response.json().catch(() => null)) as
         | { success?: boolean; message?: string }
         | null;
 
-      if (!response.ok || !result?.success) {
+      if (!response.ok) {
         throw new Error(result?.message || "Unable to send your message right now.");
       }
 
