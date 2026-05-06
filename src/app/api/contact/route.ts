@@ -4,6 +4,9 @@ import { Resend } from "resend";
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL;
 const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL;
+const MAX_NAME_LENGTH = 120;
+const MAX_SERVICE_LENGTH = 120;
+const MAX_MESSAGE_LENGTH = 2000;
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -35,6 +38,7 @@ export async function POST(request: Request) {
       email?: string;
       service?: string;
       message?: string;
+      company?: string;
       source?: string;
     };
 
@@ -42,6 +46,7 @@ export async function POST(request: Request) {
     const email = String(body?.email ?? "").trim();
     const service = String(body?.service ?? "").trim();
     const message = String(body?.message ?? "").trim();
+    const company = String(body?.company ?? "").trim();
     const source = String(body?.source ?? "website-contact").trim();
 
     if (!name || !email || !message) {
@@ -54,6 +59,34 @@ export async function POST(request: Request) {
     if (!isValidEmail(email)) {
       return NextResponse.json(
         { success: false, message: "Please provide a valid email address." },
+        { status: 400 },
+      );
+    }
+
+    if (company) {
+      return NextResponse.json({
+        success: true,
+        message: "Message sent. Our team will contact you shortly.",
+      });
+    }
+
+    if (name.length > MAX_NAME_LENGTH) {
+      return NextResponse.json(
+        { success: false, message: "Name is too long." },
+        { status: 400 },
+      );
+    }
+
+    if (service.length > MAX_SERVICE_LENGTH) {
+      return NextResponse.json(
+        { success: false, message: "Service is too long." },
+        { status: 400 },
+      );
+    }
+
+    if (message.length > MAX_MESSAGE_LENGTH) {
+      return NextResponse.json(
+        { success: false, message: "Message is too long." },
         { status: 400 },
       );
     }
@@ -74,6 +107,9 @@ export async function POST(request: Request) {
     const safeService = escapeHtml(service || "Not specified");
     const safeMessage = escapeHtml(message);
     const safeSource = escapeHtml(source);
+    const ipAddress =
+      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+    const userAgent = request.headers.get("user-agent") || "unknown";
 
     const subject = `[A&T Nexus Contact] ${name}`;
     const text = [
@@ -82,6 +118,8 @@ export async function POST(request: Request) {
       `Service: ${service || "Not specified"}`,
       `Message: ${message}`,
       `Source: ${source}`,
+      `IP: ${ipAddress}`,
+      `User Agent: ${userAgent}`,
     ].join("\n");
 
     const html = `
@@ -91,6 +129,8 @@ export async function POST(request: Request) {
       <p><strong>Service:</strong> ${safeService}</p>
       <p><strong>Message:</strong><br />${safeMessage.replace(/\n/g, "<br />")}</p>
       <p><strong>Source:</strong> ${safeSource}</p>
+      <p><strong>IP:</strong> ${escapeHtml(ipAddress)}</p>
+      <p><strong>User Agent:</strong> ${escapeHtml(userAgent)}</p>
     `;
 
     const { error } = await resend.emails.send({

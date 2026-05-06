@@ -21,6 +21,7 @@ export default function ContactSection() {
     const email = String(formData.get("email") ?? "").trim();
     const service = String(formData.get("service") ?? "").trim();
     const message = String(formData.get("message") ?? "").trim();
+    const company = String(formData.get("company") ?? "").trim();
     const source = "contact-page";
 
     try {
@@ -29,6 +30,7 @@ export default function ContactSection() {
         email,
         service,
         message,
+        company,
         source,
       };
 
@@ -134,6 +136,10 @@ export default function ContactSection() {
           </div>
 
           <form className="contact-form" onSubmit={handleContactSubmit}>
+            <label className="contact-honeypot" aria-hidden="true">
+              Company
+              <input type="text" name="company" tabIndex={-1} autoComplete="off" />
+            </label>
             <label>
               Name
               <input type="text" name="name" placeholder="Name" required />
