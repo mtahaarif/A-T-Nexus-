@@ -24,32 +24,27 @@ export default function ContactSection() {
     const source = "contact-page";
 
     try {
-      const payload = new URLSearchParams({
+      const payload = {
         name,
         email,
-        service: service || "Not specified",
+        service,
         message,
-        _subject: `[A&T Nexus Contact] ${name}`,
-        _captcha: "false",
-        _template: "table",
-        _replyto: email,
-        _source: source,
-      });
+        source,
+      };
 
-      const response = await fetch("https://formsubmit.co/ajax/info@atnexus.io", {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body: payload.toString(),
+        body: JSON.stringify(payload),
       });
 
       const result = (await response.json().catch(() => null)) as
         | { success?: boolean; message?: string }
         | null;
 
-      if (!response.ok) {
+      if (!response.ok || !result?.success) {
         throw new Error(result?.message || "Unable to send your message right now.");
       }
 

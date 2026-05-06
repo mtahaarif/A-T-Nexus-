@@ -49,21 +49,32 @@ export async function POST(request: Request) {
       _source: source,
     });
 
+    const origin = request.headers.get("origin") ?? "https://www.atnexus.io";
+    const referer = request.headers.get("referer") ?? "https://www.atnexus.io/contact";
+
     const forwardResponse = await fetch(FORMSUBMIT_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
         Accept: "application/json",
+        Origin: origin,
+        Referer: referer,
       },
       body: payload.toString(),
       cache: "no-store",
     });
 
-    if (!forwardResponse.ok) {
+    const forwardResult = (await forwardResponse.json().catch(() => null)) as
+      | { success?: boolean; message?: string }
+      | null;
+
+    if (!forwardResponse.ok || forwardResult?.success === false) {
       return NextResponse.json(
         {
           success: false,
-          message: "Unable to send your message right now. Please try again.",
+          message:
+            forwardResult?.message ||
+            "Unable to send your message right now. Please try again.",
         },
         { status: 502 },
       );
