@@ -99,7 +99,13 @@ export default function ContactSection() {
               </span>
               <div>
                 <h4>Location</h4>
-                <p>Chicago, Illinois</p>
+                <p>
+                  A&amp;T NEXUS SOLUTIONS LLC
+                  <br />
+                  2501 Chatham Rd # 6227
+                  <br />
+                  Springfield, IL 62704
+                </p>
               </div>
             </article>
 
@@ -116,8 +122,7 @@ export default function ContactSection() {
               </span>
               <div>
                 <h4>Phone Numbers</h4>
-                <a href="tel:+17089420102">Call: +1 (708) 942-0102</a> <br />
-                <a href="whatsapp:+14693673215">Whatsapp: +1 (469) 367-3215</a>
+                <a href="tel:+12243956753">Call: +1 (224) 395-6753</a>
               </div>
             </article>
           </div>
