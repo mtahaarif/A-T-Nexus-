@@ -1,10 +1,31 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
-const CONTACT_EMAIL = "info@atnexus.io";
-const FORMSUBMIT_URL = `https://formsubmit.co/ajax/${CONTACT_EMAIL}`;
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL;
+const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL;
 
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function escapeHtml(value: string) {
+  return value.replace(/[&<>"']/g, (char) => {
+    switch (char) {
+      case "&":
+        return "&amp;";
+      case "<":
+        return "&lt;";
+      case ">":
+        return "&gt;";
+      case '"':
+        return "&quot;";
+      case "'":
+        return "&#39;";
+      default:
+        return char;
+    }
+  });
 }
 
 export async function POST(request: Request) {
@@ -37,44 +58,55 @@ export async function POST(request: Request) {
       );
     }
 
-    const payload = new URLSearchParams({
-      name,
-      email,
-      service: service || "Not specified",
-      message,
-      _subject: `[A&T Nexus Contact] ${name}`,
-      _captcha: "false",
-      _template: "table",
-      _replyto: email,
-      _source: source,
-    });
-
-    const origin = request.headers.get("origin") ?? "https://www.atnexus.io";
-    const referer = request.headers.get("referer") ?? "https://www.atnexus.io/contact";
-
-    const forwardResponse = await fetch(FORMSUBMIT_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Accept: "application/json",
-        Origin: origin,
-        Referer: referer,
-      },
-      body: payload.toString(),
-      cache: "no-store",
-    });
-
-    const forwardResult = (await forwardResponse.json().catch(() => null)) as
-      | { success?: boolean; message?: string }
-      | null;
-
-    if (!forwardResponse.ok || forwardResult?.success === false) {
+    if (!RESEND_API_KEY || !CONTACT_FROM_EMAIL || !CONTACT_TO_EMAIL) {
       return NextResponse.json(
         {
           success: false,
           message:
-            forwardResult?.message ||
-            "Unable to send your message right now. Please try again.",
+            "Email service is not configured. Please set RESEND_API_KEY, CONTACT_FROM_EMAIL, and CONTACT_TO_EMAIL.",
+        },
+        { status: 500 },
+      );
+    }
+    const resend = new Resend(RESEND_API_KEY);
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeService = escapeHtml(service || "Not specified");
+    const safeMessage = escapeHtml(message);
+    const safeSource = escapeHtml(source);
+
+    const subject = `[A&T Nexus Contact] ${name}`;
+    const text = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Service: ${service || "Not specified"}`,
+      `Message: ${message}`,
+      `Source: ${source}`,
+    ].join("\n");
+
+    const html = `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${safeName}</p>
+      <p><strong>Email:</strong> ${safeEmail}</p>
+      <p><strong>Service:</strong> ${safeService}</p>
+      <p><strong>Message:</strong><br />${safeMessage.replace(/\n/g, "<br />")}</p>
+      <p><strong>Source:</strong> ${safeSource}</p>
+    `;
+
+    const { error } = await resend.emails.send({
+      from: CONTACT_FROM_EMAIL,
+      to: [CONTACT_TO_EMAIL],
+      replyTo: email,
+      subject,
+      text,
+      html,
+    });
+
+    if (error) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Unable to send your message right now. Please try again.",
         },
         { status: 502 },
       );
