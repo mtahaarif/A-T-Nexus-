@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 
 export default function ContactSection() {
   const [contactStatus, setContactStatus] = useState<{
@@ -8,6 +8,11 @@ export default function ContactSection() {
     message: string;
   } | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
+  const whatsappNumber = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "12243956753").replace(
+    /\D/g,
+    "",
+  );
 
   const handleContactSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -64,6 +69,29 @@ export default function ContactSection() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const buildWhatsAppMessage = (formData: FormData) => {
+    const name = String(formData.get("name") ?? "").trim();
+    const email = String(formData.get("email") ?? "").trim();
+    const service = String(formData.get("service") ?? "").trim();
+    const message = String(formData.get("message") ?? "").trim();
+
+    return [
+      "New contact form submission:",
+      `Name: ${name || "-"}`,
+      `Email: ${email || "-"}`,
+      `Service: ${service || "Not specified"}`,
+      `Message: ${message || "-"}`,
+    ].join("\n");
+  };
+
+  const handleWhatsAppSend = () => {
+    if (!formRef.current || !whatsappNumber) return;
+    const formData = new FormData(formRef.current);
+    const text = buildWhatsAppMessage(formData);
+    const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -135,7 +163,7 @@ export default function ContactSection() {
             </article>
           </div>
 
-          <form className="contact-form" onSubmit={handleContactSubmit}>
+          <form ref={formRef} className="contact-form" onSubmit={handleContactSubmit}>
             <label className="contact-honeypot" aria-hidden="true">
               Company
               <input type="text" name="company" tabIndex={-1} autoComplete="off" />
@@ -160,13 +188,22 @@ export default function ContactSection() {
               <textarea name="message" rows={4} placeholder="Message" required />
             </label>
 
-            <button
-              type="submit"
-              className="btn btn-primary submit-btn"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? "Sending..." : "Submit"}
-            </button>
+            <div className="contact-actions">
+              <button
+                type="submit"
+                className="btn btn-primary submit-btn"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Sending..." : "Submit"}
+              </button>
+              <button
+                type="button"
+                className="btn btn-secondary-outline submit-btn"
+                onClick={handleWhatsAppSend}
+              >
+                Send via WhatsApp
+              </button>
+            </div>
 
             {contactStatus ? (
               <p

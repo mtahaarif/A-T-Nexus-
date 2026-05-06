@@ -1426,15 +1426,6 @@ img {
 	color: rgba(255, 255, 255, 0.86);
 }
 
-.contact-honeypot {
-	position: absolute;
-	left: -9999px;
-	width: 1px;
-	height: 1px;
-	overflow: hidden;
-	pointer-events: none;
-}
-
 .dedicated-hero,
 .dedicated-math,
 .dedicated-pillars,
@@ -2235,6 +2226,26 @@ img {
 .contact-form input:focus,
 .contact-form textarea:focus {
 	border-color: rgba(118, 255, 236, 0.72);
+}
+
+.contact-honeypot {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.contact-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-top: 4px;
+}
+
+.contact-actions .btn {
+	width: 220px;
 }
 
 .submit-btn {
