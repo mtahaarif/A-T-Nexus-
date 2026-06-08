@@ -9,7 +9,7 @@ export default function ContactSection() {
   } | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formRef = useRef<HTMLFormElement | null>(null);
-  const whatsappNumber = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "12243956753").replace(
+  const whatsappNumber = (process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "12243956843").replace(
     /\D/g,
     "",
   );
