@@ -158,7 +158,7 @@ export default function ContactSection() {
               </span>
               <div>
                 <h4>Phone Numbers</h4>
-                <a href="tel:+12243956753">Call: +1 (224) 395-6753</a>
+                <a href="tel:+12243956843">Call: +1 (224) 395-6843</a>
               </div>
             </article>
           </div>
