@@ -68,7 +68,7 @@ export function HeroSection() {
             help your business thrive in today&apos;s connected,
             technology-driven world.
           </p>
-          <Link href="/services" className="btn btn-secondary-outline">
+          <Link href="/home-health-care-operations" className="btn btn-secondary-outline">
             Explore Services
           </Link>
         </div>
