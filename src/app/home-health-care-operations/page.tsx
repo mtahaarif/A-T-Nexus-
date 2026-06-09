@@ -196,7 +196,7 @@ export default function HomeHealthCareOperationsPage() {
                 "From billing and staffing to lead generation and client acquisition - we
                 handle your entire backend operations."
               </p>
-              <Link href="/services#contact" className="btn btn-primary">
+              <Link href="/contact" className="btn btn-primary">
                 Build Your Dedicated Ops Team
               </Link>
             </div>

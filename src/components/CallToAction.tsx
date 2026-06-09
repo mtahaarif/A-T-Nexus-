@@ -31,7 +31,7 @@ export default function CallToAction({ className }: CallToActionProps) {
           acquisition&mdash;all under one roof.
         </p>
 
-        <Link href="/services#contact" className="font-jakarta cta-immersive-button">
+        <Link href="/contact" className="font-jakarta cta-immersive-button">
           Start With Dedicated Ops
         </Link>
       </div>
