@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import Link from "next/link";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
@@ -14,7 +15,7 @@ type CallToActionProps = {
   className?: string;
 };
 
-export default function CallToAction({ className }: CallToActionProps) {
+const CallToAction: React.FC<CallToActionProps> = ({ className }) => {
   const sectionClassName = [jakarta.variable, "cta-immersive", className]
     .filter(Boolean)
     .join(" ");
@@ -37,4 +38,6 @@ export default function CallToAction({ className }: CallToActionProps) {
       </div>
     </section>
   );
-}
+};
+
+export default CallToAction;
