@@ -15,7 +15,7 @@ type CallToActionProps = {
   className?: string;
 };
 
-const CallToAction: React.FC<CallToActionProps> = ({ className }) => {
+export default function CallToAction({ className }: CallToActionProps) {
   const sectionClassName = [jakarta.variable, "cta-immersive", className]
     .filter(Boolean)
     .join(" ");
@@ -38,6 +38,4 @@ const CallToAction: React.FC<CallToActionProps> = ({ className }) => {
       </div>
     </section>
   );
-};
-
-export default CallToAction;
+}
