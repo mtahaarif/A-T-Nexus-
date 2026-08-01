@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
 import { Plus_Jakarta_Sans } from "next/font/google";
 
