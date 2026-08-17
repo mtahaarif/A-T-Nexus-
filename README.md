@@ -4,7 +4,7 @@ A&T Nexus is a modern, high-end marketing website built with Next.js and TypeScr
 
 This repository is not a traditional CRUD application or SaaS product. Instead, it is a content-rich, visually driven marketing site with reusable section components, animated storytelling, and working contact/newsletter flows.
 
----
+----
 
 ## 1. Project Overview
 
