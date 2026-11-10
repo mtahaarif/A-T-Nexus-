@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
+import { legalLinks } from "@/components/company-info";
+
 export default function SiteFooter() {
   const [newsletterStatus, setNewsletterStatus] = useState<{
     type: "success" | "error";
@@ -134,8 +136,11 @@ export default function SiteFooter() {
         <div className="footer-bottom">
           <p>© {currentYear} All Rights Reserved!</p>
           <div>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms And Conditions</a>
+            {legalLinks.map((link) => (
+              <Link key={link.href} href={link.href}>
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

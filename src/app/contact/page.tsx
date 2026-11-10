@@ -13,7 +13,7 @@ export default function ContactPage() {
     <>
       <SiteHeader />
       <main>
-        <ContactSection />
+        <ContactSection asPageHeading />
       </main>
       <SiteFooter />
     </>

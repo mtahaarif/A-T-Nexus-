@@ -2263,6 +2263,223 @@ img {
 	color: #ff9ea1;
 }
 
+/* Contact page: heading, two-column rows, consent checkboxes */
+.contact-grid-top {
+	align-items: start;
+}
+
+.contact-eyebrow,
+.legal-eyebrow {
+	margin: 0;
+	color: var(--accent);
+	font-size: 0.95rem;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.contact-title {
+	margin: 0;
+	font-family: var(--font-head);
+	font-weight: 600;
+	font-size: clamp(2rem, 1.3rem + 1.9vw, 3.1rem);
+	line-height: 1.1;
+}
+
+.contact-lead {
+	margin: 0 0 10px;
+	color: rgba(255, 255, 255, 0.82);
+	font-size: clamp(1.02rem, 0.94rem + 0.24vw, 1.18rem);
+	line-height: 1.5;
+}
+
+.contact-form-row {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 10px;
+}
+
+.contact-required {
+	color: var(--accent);
+}
+
+.contact-consents {
+	display: grid;
+	gap: 12px;
+	margin-top: 6px;
+	padding: 16px;
+	border-radius: 14px;
+	border: 1px solid rgba(88, 126, 124, 0.4);
+	background: rgba(17, 30, 34, 0.55);
+}
+
+.contact-form label.contact-check {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: start;
+	gap: 12px;
+	font-size: 0.95rem;
+	line-height: 1.5;
+	color: rgba(255, 255, 255, 0.78);
+	cursor: pointer;
+}
+
+.contact-form .contact-check input[type="checkbox"] {
+	width: 18px;
+	height: 18px;
+	margin: 3px 0 0;
+	padding: 0;
+	border-radius: 4px;
+	accent-color: var(--accent-2);
+	cursor: pointer;
+}
+
+.contact-check input[type="checkbox"]:focus-visible {
+	outline: 2px solid rgba(118, 255, 236, 0.72);
+	outline-offset: 2px;
+}
+
+.contact-check a,
+.legal-body a,
+.legal-contact a,
+.legal-intro a {
+	color: var(--accent);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.contact-consent-note {
+	margin: 0;
+	color: rgba(255, 255, 255, 0.6);
+	font-size: 0.88rem;
+}
+
+/* Legal pages: Privacy, Terms, SMS Terms */
+.legal-shell {
+	background: var(--bg);
+}
+
+.legal-layout {
+	max-width: 880px;
+}
+
+.legal-hero {
+	display: grid;
+	gap: 12px;
+	margin-bottom: 28px;
+}
+
+.legal-hero h1 {
+	margin: 0;
+	font-family: var(--font-head);
+	font-weight: 600;
+	font-size: clamp(2.25rem, 1.4rem + 2.7vw, 3.8rem);
+	line-height: 1.08;
+}
+
+.legal-updated {
+	margin: 0;
+	color: rgba(255, 255, 255, 0.6);
+	font-size: 0.98rem;
+}
+
+.legal-intro p {
+	margin: 6px 0 0;
+	color: rgba(255, 255, 255, 0.84);
+	font-size: clamp(1.04rem, 0.96rem + 0.22vw, 1.18rem);
+	line-height: 1.6;
+}
+
+.legal-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding-bottom: 24px;
+	margin-bottom: 8px;
+	border-bottom: 1px solid rgba(113, 146, 144, 0.4);
+}
+
+.legal-tabs a {
+	padding: 9px 18px;
+	border-radius: 999px;
+	border: 1px solid rgba(88, 126, 124, 0.55);
+	color: rgba(255, 255, 255, 0.84);
+	font-size: 0.98rem;
+	transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+}
+
+.legal-tabs a:hover {
+	border-color: rgba(118, 255, 236, 0.72);
+}
+
+.legal-tabs a.is-active {
+	background: var(--gradient);
+	border-color: transparent;
+	color: #041010;
+	font-weight: 600;
+}
+
+.legal-body section {
+	padding: 22px 0;
+	border-bottom: 1px solid rgba(113, 146, 144, 0.22);
+}
+
+.legal-body section:last-child {
+	border-bottom: 0;
+}
+
+.legal-body h2 {
+	margin: 0 0 12px;
+	font-family: var(--font-head);
+	font-weight: 600;
+	font-size: clamp(1.35rem, 1.15rem + 0.5vw, 1.7rem);
+}
+
+.legal-body p,
+.legal-body li {
+	color: rgba(255, 255, 255, 0.82);
+	font-size: clamp(1rem, 0.94rem + 0.16vw, 1.1rem);
+	line-height: 1.7;
+}
+
+.legal-body p {
+	margin: 0 0 12px;
+}
+
+.legal-body ul {
+	margin: 0 0 12px;
+	padding-left: 22px;
+	display: grid;
+	gap: 8px;
+}
+
+.legal-body strong {
+	color: #ffffff;
+}
+
+.legal-contact {
+	display: grid;
+	gap: 4px;
+	padding: 18px 20px;
+	border-radius: 14px;
+	border: 1px solid rgba(88, 126, 124, 0.45);
+	background: linear-gradient(90deg, rgba(18, 30, 33, 0.88), rgba(27, 39, 43, 0.75));
+	font-style: normal;
+	color: rgba(255, 255, 255, 0.84);
+	line-height: 1.6;
+	overflow-wrap: anywhere;
+}
+
+@media (max-width: 640px) {
+	.contact-form-row {
+		grid-template-columns: 1fr;
+	}
+
+	.contact-consents {
+		padding: 14px 12px;
+	}
+}
+
 .submit-btn:disabled,
 .newsletter-pill button:disabled {
 	opacity: 0.72;

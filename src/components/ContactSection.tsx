@@ -1,8 +1,17 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useRef, useState } from "react";
 
-export default function ContactSection() {
+import { company } from "@/components/company-info";
+import { consentText, isValidPhone } from "@/components/contact-consent";
+
+type ContactSectionProps = {
+  /** Use an <h1> for the heading when this section is the main content of the page. */
+  asPageHeading?: boolean;
+};
+
+export default function ContactSection({ asPageHeading = false }: ContactSectionProps) {
   const [contactStatus, setContactStatus] = useState<{
     type: "success" | "error";
     message: string;
@@ -13,32 +22,45 @@ export default function ContactSection() {
     /\D/g,
     "",
   );
+  const Heading = asPageHeading ? "h1" : "h2";
 
   const handleContactSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setContactStatus(null);
-    setIsSubmitting(true);
 
     const form = event.currentTarget;
     const formData = new FormData(form);
 
-    const name = String(formData.get("name") ?? "").trim();
-    const email = String(formData.get("email") ?? "").trim();
-    const service = String(formData.get("service") ?? "").trim();
-    const message = String(formData.get("message") ?? "").trim();
-    const company = String(formData.get("company") ?? "").trim();
-    const source = "contact-page";
+    const payload = {
+      name: String(formData.get("name") ?? "").trim(),
+      email: String(formData.get("email") ?? "").trim(),
+      company: String(formData.get("company") ?? "").trim(),
+      phone: String(formData.get("phone") ?? "").trim(),
+      service: String(formData.get("service") ?? "").trim(),
+      message: String(formData.get("message") ?? "").trim(),
+      acceptedTerms: formData.get("acceptedTerms") === "on",
+      smsAccountConsent: formData.get("smsAccountConsent") === "on",
+      smsCareConsent: formData.get("smsCareConsent") === "on",
+      website: String(formData.get("website") ?? "").trim(),
+      source: "contact-page",
+    };
+
+    if (payload.phone && !isValidPhone(payload.phone)) {
+      setContactStatus({ type: "error", message: "Please enter a valid phone number." });
+      return;
+    }
+
+    if ((payload.smsAccountConsent || payload.smsCareConsent) && !payload.phone) {
+      setContactStatus({
+        type: "error",
+        message: "Please add your phone number so we can send the SMS messages you opted in to.",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
-      const payload = {
-        name,
-        email,
-        service,
-        message,
-        company,
-        source,
-      };
-
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
@@ -72,17 +94,16 @@ export default function ContactSection() {
   };
 
   const buildWhatsAppMessage = (formData: FormData) => {
-    const name = String(formData.get("name") ?? "").trim();
-    const email = String(formData.get("email") ?? "").trim();
-    const service = String(formData.get("service") ?? "").trim();
-    const message = String(formData.get("message") ?? "").trim();
+    const field = (key: string) => String(formData.get(key) ?? "").trim();
 
     return [
       "New contact form submission:",
-      `Name: ${name || "-"}`,
-      `Email: ${email || "-"}`,
-      `Service: ${service || "Not specified"}`,
-      `Message: ${message || "-"}`,
+      `Name: ${field("name") || "-"}`,
+      `Email: ${field("email") || "-"}`,
+      `Company: ${field("company") || "-"}`,
+      `Phone: ${field("phone") || "-"}`,
+      `Service: ${field("service") || "Not specified"}`,
+      `Message: ${field("message") || "-"}`,
     ].join("\n");
   };
 
@@ -96,19 +117,20 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="section-pad contact-shell">
-      <div className="container section-head reveal reveal-up">
-        <h2>Get In Touch</h2>
-      </div>
-
       <div className="container contact-panel reveal reveal-up">
-        <div className="contact-grid">
+        <div className="contact-grid contact-grid-top">
           <div className="contact-info">
-            <h3>Contact Info</h3>
+            <p className="contact-eyebrow">Contact us</p>
+            <Heading className="contact-title">Let&apos;s build something amazing together.</Heading>
+            <p className="contact-lead">
+              Tell us where you want to go and we&apos;ll show you how to get there. Every great
+              project starts with a conversation.
+            </p>
 
             <article className="contact-item">
               <span className="contact-icon" aria-hidden="true">
                 <img
-                  src="theme\Frame-48.png"
+                  src="/theme/Frame-48.png"
                   alt=""
                   width={30}
                   height={30}
@@ -118,14 +140,14 @@ export default function ContactSection() {
               </span>
               <div>
                 <h4>Email Address</h4>
-                <a href="mailto:info@atnexus.io">info@atnexus.io</a>
+                <a href={`mailto:${company.email}`}>{company.email}</a>
               </div>
             </article>
 
             <article className="contact-item">
               <span className="contact-icon" aria-hidden="true">
                 <img
-                  src="theme/Group-1948755046.png"
+                  src="/theme/Group-1948755046.png"
                   alt=""
                   width={30}
                   height={30}
@@ -136,11 +158,13 @@ export default function ContactSection() {
               <div>
                 <h4>Location</h4>
                 <p>
-                  A&amp;T NEXUS SOLUTIONS LLC
-                  <br />
-                  2501 Chatham Rd # 6227
-                  <br />
-                  Springfield, IL 62704
+                  {company.legalName}
+                  {company.addressLines.map((line) => (
+                    <span key={line}>
+                      <br />
+                      {line}
+                    </span>
+                  ))}
                 </p>
               </div>
             </article>
@@ -148,7 +172,7 @@ export default function ContactSection() {
             <article className="contact-item">
               <span className="contact-icon" aria-hidden="true">
                 <img
-                  src="theme/Frame-48-1.png"
+                  src="/theme/Frame-48-1.png"
                   alt=""
                   width={30}
                   height={30}
@@ -157,36 +181,108 @@ export default function ContactSection() {
                 />
               </span>
               <div>
-                <h4>Phone Numbers</h4>
-                <a href="tel:+12243956843">Call: +1 (224) 395-6843</a>
+                <h4>Phone Number</h4>
+                <a href={company.phoneHref}>Call: {company.phoneDisplay}</a>
               </div>
             </article>
           </div>
 
           <form ref={formRef} className="contact-form" onSubmit={handleContactSubmit}>
             <label className="contact-honeypot" aria-hidden="true">
-              Company
-              <input type="text" name="company" tabIndex={-1} autoComplete="off" />
-            </label>
-            <label>
-              Name
-              <input type="text" name="name" placeholder="Name" required />
+              Website
+              <input type="text" name="website" tabIndex={-1} autoComplete="off" />
             </label>
 
-            <label>
-              Email
-              <input type="email" name="email" placeholder="Email" required />
-            </label>
+            <div className="contact-form-row">
+              <label>
+                <span>
+                  Name <span className="contact-required" aria-hidden="true">*</span>
+                </span>
+                <input type="text" name="name" placeholder="Your name" autoComplete="name" required />
+              </label>
+
+              <label>
+                <span>
+                  Email <span className="contact-required" aria-hidden="true">*</span>
+                </span>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="you@company.com"
+                  autoComplete="email"
+                  required
+                />
+              </label>
+            </div>
+
+            <div className="contact-form-row">
+              <label>
+                Company
+                <input
+                  type="text"
+                  name="company"
+                  placeholder="Company name"
+                  autoComplete="organization"
+                />
+              </label>
+
+              <label>
+                Phone Number
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="+1 (555) 123-4567"
+                  autoComplete="tel"
+                  inputMode="tel"
+                />
+              </label>
+            </div>
 
             <label>
               Service
-              <input type="text" name="service" placeholder="Service" />
+              <input type="text" name="service" placeholder="What can we help with?" />
             </label>
 
             <label>
-              Message
-              <textarea name="message" rows={4} placeholder="Message" required />
+              <span>
+                Project details <span className="contact-required" aria-hidden="true">*</span>
+              </span>
+              <textarea
+                name="message"
+                rows={4}
+                placeholder="Tell us about your project, goals, and timeline"
+                required
+              />
             </label>
+
+            <div className="contact-consents">
+              <label className="contact-check">
+                <input type="checkbox" name="acceptedTerms" required />
+                <span>
+                  I agree to the <Link href="/terms">Terms and Conditions</Link> and{" "}
+                  <Link href="/privacy">Privacy Policy</Link>.{" "}
+                  <span className="contact-required" aria-hidden="true">*</span>
+                </span>
+              </label>
+
+              <label className="contact-check">
+                <input type="checkbox" name="smsAccountConsent" />
+                <span>
+                  {consentText.smsAccount} See our <Link href="/sms-terms">SMS Terms</Link>.
+                </span>
+              </label>
+
+              <label className="contact-check">
+                <input type="checkbox" name="smsCareConsent" />
+                <span>
+                  {consentText.smsCare} See our <Link href="/sms-terms">SMS Terms</Link>.
+                </span>
+              </label>
+
+              <p className="contact-consent-note">
+                SMS consent is optional and is not a condition of purchase.
+              </p>
+            </div>
 
             <div className="contact-actions">
               <button
@@ -194,7 +290,7 @@ export default function ContactSection() {
                 className="btn btn-primary submit-btn"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Sending..." : "Submit"}
+                {isSubmitting ? "Sending..." : "Send message"}
               </button>
               <button
                 type="button"
